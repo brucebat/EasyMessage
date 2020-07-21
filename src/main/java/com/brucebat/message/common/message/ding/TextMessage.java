@@ -19,11 +19,11 @@ public class TextMessage extends BaseMessage {
      */
     private String content;
     /**
-     *
+     * 指定接受通知者
      */
     private List<String> atMobiles;
     /**
-     *
+     * 是否通知全体
      */
     private boolean atAll;
 
