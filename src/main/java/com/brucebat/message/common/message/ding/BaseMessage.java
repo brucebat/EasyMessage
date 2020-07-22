@@ -1,5 +1,7 @@
 package com.brucebat.message.common.message.ding;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @date: Created in 2020/7/21
  * @description 基础信息类
  */
+@Data
 public abstract class BaseMessage implements Serializable {
 
     protected String msgType;
