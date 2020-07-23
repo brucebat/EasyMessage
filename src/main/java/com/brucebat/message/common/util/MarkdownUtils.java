@@ -36,6 +36,59 @@ public class MarkdownUtils {
         for (int i = 0; i < level; i++) {
             stringBuilder.append("#");
         }
-        return stringBuilder.toString() + title + stringBuilder.toString();
+        return stringBuilder.toString() + title + stringBuilder.toString() + " \n";
     }
+
+    /**
+     * 获取引用
+     *
+     * @param quote 获取引用
+     * @return 处理完成结果
+     */
+    public static String getQuote(String quote){
+        return "> " + quote + " \n";
+    }
+
+    /**
+     * 加粗
+     *
+     * @param text 待处理文本
+     * @return 将文本加粗
+     */
+    public static String getBold(String text) {
+        return "**" + text + "**";
+    }
+
+    /**
+     * 斜体
+     *
+     * @param text 待处理文本
+     * @return 将文本置为斜体
+     */
+    public static String getItalic(String text) {
+        return "*" + text + "*";
+    }
+
+    /**
+     * 生成网页链接格式
+     *
+     * @param title 网页标题
+     * @param link 网页链接
+     * @return 处理完成格式
+     */
+    public static String getLink(String title, String link) {
+        return "[" + title + "]" + "(" + link + ")";
+    }
+
+    /**
+     * 生成图片链接格式
+     *
+     * @param title 标题
+     * @param imageLink 图片链接
+     * @return 处理完成格式
+     */
+    public static String getImageLink(String title, String imageLink) {
+        return "![" + title + "]" + "(" + imageLink + ")";
+    }
+
 }
