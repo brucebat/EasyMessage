@@ -1,5 +1,7 @@
 package com.brucebat.message.common.util;
 
+import org.springframework.util.StringUtils;
+
 /**
  * @version 1.0
  * @author: Sun Tianyu
@@ -89,6 +91,27 @@ public class MarkdownUtils {
      */
     public static String getImageLink(String title, String imageLink) {
         return "![" + title + "]" + "(" + imageLink + ")";
+    }
+
+    /**
+     * 生成指定格式无序列表
+     * 注意：这里只会有一层无序结构
+     *
+     * @param texts 待处理无序列表
+     * @return 处理完成格式
+     */
+    public static String getUnsortedList(String... texts) {
+        if (null == texts){
+            return null;
+        }
+        StringBuilder result = new StringBuilder();
+        for (String text : texts){
+            if (StringUtils.isEmpty(text)) {
+                continue;
+            }
+            result.append("- ").append(text).append(" \n");
+        }
+        return result.toString();
     }
 
 }
