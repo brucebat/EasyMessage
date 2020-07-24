@@ -12,6 +12,10 @@ public enum MessagePropertiesEnum {
      */
     MSG_TYPE("msgtype"),
     /**
+     * 标题
+     */
+    TITLE("title"),
+    /**
      * 文本
      */
     TEXT("text"),
@@ -19,6 +23,10 @@ public enum MessagePropertiesEnum {
      * 内容
      */
     CONTENT("content"),
+    /**
+     * markdown字段
+     */
+    MARKDOWM("markdown"),
     /**
      * 联系参数
      */

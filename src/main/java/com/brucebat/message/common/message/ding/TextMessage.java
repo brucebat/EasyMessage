@@ -47,10 +47,10 @@ public class TextMessage extends BaseMessage {
         Map<String, String> textItems = new HashMap<>(1);
         textItems.put(MessagePropertiesEnum.CONTENT.getValue(), content);
         textMessage.put(MessagePropertiesEnum.TEXT.getValue(), textItems);
-        Map<String, Object> contacts = new HashMap<>(2);
-        contacts.put(MessagePropertiesEnum.AT_MOBILES.getValue(), atMobiles);
-        contacts.put(MessagePropertiesEnum.IS_AT_ALL.getValue(), atAll);
-        textMessage.put(MessagePropertiesEnum.AT.getValue(), contacts);
+        Map<String, Object> contactItems = new HashMap<>(2);
+        contactItems.put(MessagePropertiesEnum.AT_MOBILES.getValue(), atMobiles);
+        contactItems.put(MessagePropertiesEnum.IS_AT_ALL.getValue(), atAll);
+        textMessage.put(MessagePropertiesEnum.AT.getValue(), contactItems);
         return gson.toJson(textMessage);
     }
 }
