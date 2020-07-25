@@ -2,9 +2,11 @@ package com.brucebat.message.service;
 
 
 import com.brucebat.message.common.config.DingTalkProperties;
+import com.brucebat.message.common.exception.MessageException;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -27,8 +29,11 @@ public class DingTalkService {
      *
      * @param message 消息内容
      */
-    public void send(String message){
-
+    public void send(String message) throws MessageException {
+        String url = getUrl();
+        if (StringUtils.isEmpty(url)){
+            throw new MessageException("sw-0001", "钉钉发送地址获取失败");
+        }
     }
 
 
@@ -40,8 +45,12 @@ public class DingTalkService {
     private String getUrl() {
         if (dingTalkProperties.isSignEnable()){
             long timestamp = System.currentTimeMillis();
+            String signature = sign(timestamp);
+            if (StringUtils.isEmpty(signature)){
+                return null;
+            }
             return dingTalkProperties.getNotifyUrl() + "&timestamp=" + timestamp
-                    + "&sign=" + sign(timestamp);
+                    + "&sign=" + signature;
         }
         return dingTalkProperties.getNotifyUrl();
     }
