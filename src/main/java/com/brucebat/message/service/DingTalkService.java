@@ -6,7 +6,10 @@ import com.brucebat.message.common.exception.MessageException;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -24,6 +27,13 @@ public class DingTalkService {
 
     private DingTalkProperties dingTalkProperties;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
+    public DingTalkService(DingTalkProperties dingTalkProperties) {
+        this.dingTalkProperties = dingTalkProperties;
+    }
+
     /**
      * 发送消息
      *
@@ -33,6 +43,12 @@ public class DingTalkService {
         String url = getUrl();
         if (StringUtils.isEmpty(url)){
             throw new MessageException("sw-0001", "钉钉发送地址获取失败");
+        }
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, message, String.class);
+        log.info("钉钉发送结果：{}", responseEntity.toString());
+        if (!responseEntity.getStatusCode().is2xxSuccessful()){
+            log.error("钉钉发送异常,结果为：{}", responseEntity.getBody());
+            throw new MessageException("sw-0002", "钉钉发送异常");
         }
     }
 
