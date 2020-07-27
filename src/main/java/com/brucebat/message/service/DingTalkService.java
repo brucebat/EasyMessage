@@ -3,10 +3,14 @@ package com.brucebat.message.service;
 
 import com.brucebat.message.common.config.DingTalkProperties;
 import com.brucebat.message.common.exception.MessageException;
+import com.brucebat.message.common.message.ding.BaseMessage;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
@@ -39,12 +43,15 @@ public class DingTalkService {
      *
      * @param message 消息内容
      */
-    public void send(String message) throws MessageException {
+    public void send(BaseMessage message) throws MessageException {
         String url = getUrl();
         if (StringUtils.isEmpty(url)){
             throw new MessageException("sw-0001", "钉钉发送地址获取失败");
         }
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, message, String.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(message.toMessage(), headers);
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, entity, String.class);
         log.info("钉钉发送结果：{}", responseEntity.toString());
         if (!responseEntity.getStatusCode().is2xxSuccessful()){
             log.error("钉钉发送异常,结果为：{}", responseEntity.getBody());
