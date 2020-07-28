@@ -38,7 +38,7 @@ public class MarkdownUtils {
         for (int i = 0; i < level; i++) {
             stringBuilder.append("#");
         }
-        return stringBuilder.toString() + title + stringBuilder.toString() + " \n";
+        return stringBuilder.toString() + " " + title + " " + stringBuilder.toString() + " \n";
     }
 
     /**
