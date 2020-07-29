@@ -24,6 +24,14 @@ public enum MessagePropertiesEnum {
      */
     CONTENT("content"),
     /**
+     * 图片url
+     */
+    PIC_URL("picUrl"),
+    /**
+     * 消息url
+     */
+    MESSAGE_URL("messageUrl"),
+    /**
      * markdown字段
      */
     MARKDOWM("markdown"),

@@ -41,6 +41,12 @@ public class MarkdownMessage extends BaseMessage {
         this.msgType = MessageTypeEnum.MARKDOWN.getType();
     }
 
+    public MarkdownMessage(String title, String text){
+        this.msgType = MessageTypeEnum.MARKDOWN.getType();
+        this.title = title;
+        this.text = text;
+    }
+
     @Override
     public String toMessage() {
         Gson gson = new Gson();
