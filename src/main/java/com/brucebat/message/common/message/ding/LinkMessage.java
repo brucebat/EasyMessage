@@ -3,6 +3,7 @@ package com.brucebat.message.common.message.ding;
 import com.brucebat.message.common.enums.MessagePropertiesEnum;
 import com.brucebat.message.common.enums.MessageTypeEnum;
 import com.google.gson.Gson;
+import lombok.Data;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @date: Created in 2020/7/29
  * @description
  */
+@Data
 public class LinkMessage extends BaseMessage {
 
     /**
