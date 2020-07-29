@@ -51,6 +51,7 @@ public class LinkMessage extends BaseMessage {
             linkItems.put(MessagePropertiesEnum.PIC_URL.getValue(), picUrl);
         }
         linkItems.put(MessagePropertiesEnum.MESSAGE_URL.getValue(), messageUrl);
+        message.put(MessagePropertiesEnum.LINK.getValue(), linkItems);
         return gson.toJson(message);
     }
 }

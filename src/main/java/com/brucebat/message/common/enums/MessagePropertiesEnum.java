@@ -36,6 +36,10 @@ public enum MessagePropertiesEnum {
      */
     MARKDOWM("markdown"),
     /**
+     * link参数
+     */
+    LINK("link"),
+    /**
      * 联系参数
      */
     AT("at"),
