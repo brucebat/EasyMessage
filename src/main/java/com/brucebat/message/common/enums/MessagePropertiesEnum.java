@@ -36,9 +36,29 @@ public enum MessagePropertiesEnum {
      */
     MARKDOWM("markdown"),
     /**
+     * 事件卡片
+     */
+    ACTIONCARD("actionCard"),
+    /**
      * link参数
      */
     LINK("link"),
+    /**
+     * 消息排列
+     */
+    BTN_ORIENTATION("btnOrientation"),
+    /**
+     * 单个按钮的标题
+     */
+    SINGLE_TITLE("singleTitle"),
+    /**
+     * 点击singleTitle按钮触发的URL
+     */
+    SINGLE_URL("singleURL"),
+    /**
+     * 按钮
+     */
+    BTNS("btns"),
     /**
      * 联系参数
      */
