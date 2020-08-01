@@ -44,6 +44,10 @@ public enum MessagePropertiesEnum {
      */
     LINK("link"),
     /**
+     * feedCard
+     */
+    FEEDCARD("feedCard"),
+    /**
      * 消息排列
      */
     BTN_ORIENTATION("btnOrientation"),
@@ -59,6 +63,10 @@ public enum MessagePropertiesEnum {
      * 按钮
      */
     BTNS("btns"),
+    /**
+     * links
+     */
+    LINKS("links"),
     /**
      * 联系参数
      */
