@@ -1,6 +1,7 @@
 package com.brucebat.message.service;
 
 
+import com.brucebat.message.common.annnotation.Limiter;
 import com.brucebat.message.common.config.DingTalkProperties;
 import com.brucebat.message.common.exception.MessageException;
 import com.brucebat.message.common.message.ding.BaseMessage;
@@ -18,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URLEncoder;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @version 1.0
@@ -40,12 +42,14 @@ public class DingTalkService {
 
     /**
      * 发送消息
+     * 增加限流处理，每分钟最多发送20次
      *
      * @param message 消息内容
      */
+    @Limiter(name = "dingTalk", permitsPerSecond = 0.3)
     public void send(BaseMessage message) throws MessageException {
         String url = getUrl();
-        if (StringUtils.isEmpty(url)){
+        if (StringUtils.isEmpty(url)) {
             throw new MessageException("sw-0001", "钉钉发送地址获取失败");
         }
         HttpHeaders headers = new HttpHeaders();
@@ -53,7 +57,7 @@ public class DingTalkService {
         HttpEntity<String> entity = new HttpEntity<>(message.toMessage(), headers);
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, entity, String.class);
         log.info("钉钉发送结果：{}", responseEntity.toString());
-        if (!responseEntity.getStatusCode().is2xxSuccessful()){
+        if (!responseEntity.getStatusCode().is2xxSuccessful()) {
             log.error("钉钉发送异常,结果为：{}", responseEntity.getBody());
             throw new MessageException("sw-0002", "钉钉发送异常");
         }
@@ -66,10 +70,10 @@ public class DingTalkService {
      * @return
      */
     private String getUrl() {
-        if (dingTalkProperties.isSignEnable()){
+        if (dingTalkProperties.isSignEnable()) {
             long timestamp = System.currentTimeMillis();
             String signature = sign(timestamp);
-            if (StringUtils.isEmpty(signature)){
+            if (StringUtils.isEmpty(signature)) {
                 return null;
             }
             return dingTalkProperties.getNotifyUrl() + "&timestamp=" + timestamp
