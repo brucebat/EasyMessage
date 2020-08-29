@@ -14,12 +14,22 @@ import java.util.concurrent.TimeUnit;
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Limitor {
+public @interface Limiter {
+
+    /**
+     * 限流器名称
+     */
+    String name() default "default";
 
     /**
      * 单位时间并发个数
      */
-    double limit() default 1;
+    double permitsPerSecond() default 1;
+
+    /**
+     * 限流器启动时间
+     */
+    long warmupPeriod() default 1;
 
     /**
      * 时间单位
