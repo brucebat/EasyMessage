@@ -5,9 +5,9 @@ import com.google.common.util.concurrent.RateLimiter;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author Sun Tianyu
  * @version 1.0
- * @date Created in 2020/8/29
+ * @author: Sun Tianyu
+ * @date: Created in 2020/9/1
  * @description
  */
 @SuppressWarnings("UnstableApiUsage")
@@ -38,16 +38,5 @@ public class RateLimiterHelper {
      */
     public static RateLimiter getRateLimiter(String name) {
         return RATE_LIMITER_MAP.get(name);
-    }
-
-    /**
-     * 进行限流器数据更新
-     *
-     * @param name 限流器名称
-     * @param rateLimiter 限流器
-     */
-    public static void refresh(String name, RateLimiter rateLimiter) {
-        RATE_LIMITER_MAP.remove(name);
-        setRateLimiter(name, rateLimiter);
     }
 }

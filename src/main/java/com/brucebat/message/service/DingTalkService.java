@@ -1,7 +1,7 @@
 package com.brucebat.message.service;
 
 
-import com.brucebat.message.common.annnotation.Limiter;
+import com.brucebat.message.common.annotation.Limiter;
 import com.brucebat.message.common.config.DingTalkProperties;
 import com.brucebat.message.common.exception.MessageException;
 import com.brucebat.message.common.message.ding.BaseMessage;
@@ -19,7 +19,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URLEncoder;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @version 1.0
@@ -33,6 +32,7 @@ public class DingTalkService {
 
     private DingTalkProperties dingTalkProperties;
 
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -45,8 +45,18 @@ public class DingTalkService {
      * 增加限流处理，每分钟最多发送20次
      *
      * @param message 消息内容
+     * @throws MessageException 消息异常
      */
-    @Limiter(name = "dingTalk", permitsPerSecond = 0.3)
+    @Limiter(permitsPerSecond = 0.3)
+    public void sendWithLimit(BaseMessage message) throws MessageException {
+        send(message);
+    }
+
+    /**
+     * 发送消息
+     *
+     * @param message 消息内容
+     */
     public void send(BaseMessage message) throws MessageException {
         String url = getUrl();
         if (StringUtils.isEmpty(url)) {
@@ -67,7 +77,7 @@ public class DingTalkService {
     /**
      * 获取发送地址
      *
-     * @return
+     * @return 返回签名地址
      */
     private String getUrl() {
         if (dingTalkProperties.isSignEnable()) {

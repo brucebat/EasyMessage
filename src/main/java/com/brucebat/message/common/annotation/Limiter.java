@@ -1,4 +1,4 @@
-package com.brucebat.message.common.annnotation;
+package com.brucebat.message.common.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,9 +7,9 @@ import java.lang.annotation.Target;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Sun Tianyu
  * @version 1.0
- * @date Created in 2020/8/28
+ * @author: Sun Tianyu
+ * @date: Created in 2020/9/1
  * @description
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
