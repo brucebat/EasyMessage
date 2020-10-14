@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.brucebat</groupId>
     <artifactId>spring-boot-starter-message</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
     <name>spring-boot-starter-message</name>
     <description>easy for messaging</description>
 
@@ -65,16 +65,105 @@
 
     </dependencies>
 
+    <!-- 开源签名证书 -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- 仓库信息 -->
+    <scm>
+        <connection>scm:git:git@github.com:brucebat/EasyMessage.git</connection>
+        <developerConnection>scm:git:git@github.com:brucebat/EasyMessage.git</developerConnection>
+        <url>https://github.com/brucebat/EasyMessage/tree/master</url>
+    </scm>
+
+
+    <!-- 开发人员信息 -->
+    <developers>
+        <developer>
+            <name>brucebat</name>
+            <email>suntywork@163.com</email>
+            <organization>https://github.com/brucebat</organization>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
+    <!-- 发布管理信息 -->
+    <distributionManagement>
+        <repository>
+            <!-- 这里的id必须要和全局配置中的release id 一致 -->
+            <id>releases</id>
+            <name>Nexus Release Repository</name>
+            <!-- 这里就是在创建issue成功后，对方回复的release发布地址-->
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <!-- 这里的id必须要和全局配置中的snapshot id 一致 -->
+            <id>snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <!-- 这里就是在创建issue成功后，对方回复的snapshot发布地址-->
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <!-- 这里的id必须要和全局配置中的release id 一致 -->
+                    <serverId>releases</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <!-- 如果希望发布后自动执行close和release操作，此处可以调整为true -->
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
                 </configuration>
             </plugin>
+
+            <!-- 生成java source.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 生成asc 校验文件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <source>1.8</source>-->
+<!--                    <target>1.8</target>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
