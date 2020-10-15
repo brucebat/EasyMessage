@@ -10,8 +10,8 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/27
- * @description
+ * @since : Created in 2020/7/27
+ *
  */
 @Configuration
 public class RestTemplateConfig {

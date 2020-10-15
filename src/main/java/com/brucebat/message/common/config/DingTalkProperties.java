@@ -5,8 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/23
- * @description
+ * @since : Created in 2020/7/23
+ *
  */
 @ConfigurationProperties(prefix = "dingtalk.robot")
 public class DingTalkProperties {

@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/9/1
- * @description
+ * @since : Created in 2020/9/1
+ *
  */
 @Aspect
 public class RateLimitAspect {
@@ -30,6 +30,7 @@ public class RateLimitAspect {
      *
      * @param joinPoint 切点
      * @return 返回参数
+     * @throws Throwable
      */
     @SuppressWarnings("UnstableApiUsage")
     @Around("@within(com.brucebat.message.common.annotation.Limiter) || @annotation(com.brucebat.message.common.annotation.Limiter)")

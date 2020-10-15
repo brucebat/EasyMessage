@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/27
- * @description 钉钉服务自动装配类
+ * @since : Created in 2020/7/27
+ * 钉钉服务自动装配类
  */
 @Configuration
 @EnableConfigurationProperties(DingTalkProperties.class)

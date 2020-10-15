@@ -5,8 +5,8 @@ import lombok.Data;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/25
- * @description
+ * @since : Created in 2020/7/25
+ *
  */
 @Data
 public class MessageException extends Exception {

@@ -23,8 +23,8 @@ import java.net.URLEncoder;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/22
- * @description 钉钉消息服务
+ * @since : Created in 2020/7/22
+ *  钉钉消息服务
  */
 public class DingTalkService {
 
@@ -56,6 +56,7 @@ public class DingTalkService {
      * 发送消息
      *
      * @param message 消息内容
+     * @throws MessageException
      */
     public void send(BaseMessage message) throws MessageException {
         String url = getUrl();

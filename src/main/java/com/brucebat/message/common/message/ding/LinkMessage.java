@@ -12,8 +12,8 @@ import java.util.Map;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/29
- * @description
+ * @since : Created in 2020/7/29
+ *
  */
 @Data
 public class LinkMessage extends BaseMessage {

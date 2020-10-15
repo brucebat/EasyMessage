@@ -13,8 +13,8 @@ import java.util.Map;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/8/1
- * @description
+ * @since : Created in 2020/8/1
+ *
  */
 @Data
 public class FeedCardMessage extends BaseMessage {
