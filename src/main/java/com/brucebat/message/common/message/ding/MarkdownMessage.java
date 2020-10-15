@@ -13,8 +13,8 @@ import java.util.Map;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/21
- * @description markdown格式消息类
+ * @since : Created in 2020/7/21
+ *  markdown格式消息类
  */
 @Data
 public class MarkdownMessage extends BaseMessage {

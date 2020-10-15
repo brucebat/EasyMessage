@@ -3,8 +3,8 @@ package com.brucebat.message.common.enums;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/21
- * @description 钉钉消息类型枚举类
+ * @since: Created in 2020/7/21
+ *  钉钉消息类型枚举类
  */
 public enum MessageTypeEnum {
     /**

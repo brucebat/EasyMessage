@@ -7,8 +7,8 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/9/1
- * @description
+ * @since : Created in 2020/9/1
+ *
  */
 @SuppressWarnings("UnstableApiUsage")
 public class RateLimiterHelper {

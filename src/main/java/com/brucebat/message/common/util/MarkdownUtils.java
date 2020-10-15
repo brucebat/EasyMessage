@@ -5,8 +5,7 @@ import org.springframework.util.StringUtils;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/21
- * @description
+ * @since  Created in 2020/7/21
  */
 public class MarkdownUtils {
 

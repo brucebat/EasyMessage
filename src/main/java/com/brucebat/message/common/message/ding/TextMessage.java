@@ -13,8 +13,8 @@ import java.util.Map;
 /**
  * @version 1.0
  * @author: Sun Tianyu
- * @date: Created in 2020/7/22
- * @description
+ * @since : Created in 2020/7/22
+ *
  */
 @Data
 public class TextMessage extends BaseMessage {
