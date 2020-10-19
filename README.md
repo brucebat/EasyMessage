@@ -20,3 +20,11 @@
   <version>1.0.0-RELEASE</version>
 </dependency>
 ```
+
+## 致谢
+
+非常感谢JetBrain的支持，提供了免费使用开发工具的机会
+
+![JetBrains](images/jetbrains-variant-2.png)
+
+[来自EasyMessage](https://www.jetbrains.com/?from=EasyMessage)
