@@ -1,6 +1,7 @@
 package com.brucebat.message.service;
 
 
+import com.alibaba.fastjson.JSON;
 import com.brucebat.message.common.annotation.Limiter;
 import com.brucebat.message.common.config.DingTalkProperties;
 import com.brucebat.message.common.exception.MessageException;
@@ -56,7 +57,7 @@ public class DingTalkService {
      * 发送消息
      *
      * @param message 消息内容
-     * @throws MessageException
+     * @throws MessageException 消息发送异常
      */
     public void send(BaseMessage message) throws MessageException {
         String url = getUrl();
@@ -65,7 +66,7 @@ public class DingTalkService {
         }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> entity = new HttpEntity<>(message.toMessage(), headers);
+        HttpEntity<String> entity = new HttpEntity<>(JSON.toJSONString(message), headers);
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, entity, String.class);
         log.info("钉钉发送结果：{}", responseEntity.toString());
         if (!responseEntity.getStatusCode().is2xxSuccessful()) {
