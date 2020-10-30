@@ -30,7 +30,7 @@ public class RateLimitAspect {
      *
      * @param joinPoint 切点
      * @return 返回参数
-     * @throws Throwable
+     * @throws Throwable 运行时异常
      */
     @SuppressWarnings("UnstableApiUsage")
     @Around("@within(com.brucebat.message.common.annotation.Limiter) || @annotation(com.brucebat.message.common.annotation.Limiter)")

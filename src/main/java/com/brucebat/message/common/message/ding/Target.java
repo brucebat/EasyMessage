@@ -7,8 +7,7 @@ import java.util.List;
 /**
  * @author Sun Tianyu
  * @version 1.0
- * @date Created in 2020/10/30
- * @description
+ * @since  Created in 2020/10/30
  */
 @Data
 public class Target {
