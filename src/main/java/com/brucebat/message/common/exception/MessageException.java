@@ -1,6 +1,7 @@
 package com.brucebat.message.common.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @version 1.0
@@ -8,6 +9,7 @@ import lombok.Data;
  * @since : Created in 2020/7/25
  *
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class MessageException extends Exception {
 

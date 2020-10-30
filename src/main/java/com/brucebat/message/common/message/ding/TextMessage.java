@@ -1,10 +1,8 @@
 package com.brucebat.message.common.message.ding;
 
-import com.brucebat.message.common.enums.MessagePropertiesEnum;
 import com.brucebat.message.common.enums.MessageTypeEnum;
-import com.google.gson.Gson;
 import lombok.Data;
-import org.springframework.util.StringUtils;
+import lombok.EqualsAndHashCode;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,43 +12,36 @@ import java.util.Map;
  * @version 1.0
  * @author: Sun Tianyu
  * @since : Created in 2020/7/22
- *
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class TextMessage extends BaseMessage {
 
-    /**
-     * 内容
-     */
-    private String content;
-    /**
-     * 指定接受通知者
-     */
-    private List<String> atMobiles;
-    /**
-     * 是否通知全体
-     */
-    private boolean atAll;
+    private Text text;
 
     public TextMessage() {
         this.msgType = MessageTypeEnum.TEXT.getType();
     }
 
-    @Override
-    public String toMessage() {
-        if (StringUtils.isEmpty(msgType) || StringUtils.isEmpty(content)) {
-            return null;
-        }
-        Gson gson = new Gson();
-        Map<String, Object> textMessage = new HashMap<>(3);
-        textMessage.put(MessagePropertiesEnum.MSG_TYPE.getValue(), msgType);
-        Map<String, String> textItems = new HashMap<>(1);
-        textItems.put(MessagePropertiesEnum.CONTENT.getValue(), content);
-        textMessage.put(MessagePropertiesEnum.TEXT.getValue(), textItems);
-        Map<String, Object> contactItems = new HashMap<>(2);
-        contactItems.put(MessagePropertiesEnum.AT_MOBILES.getValue(), atMobiles);
-        contactItems.put(MessagePropertiesEnum.IS_AT_ALL.getValue(), atAll);
-        textMessage.put(MessagePropertiesEnum.AT.getValue(), contactItems);
-        return gson.toJson(textMessage);
+    public static TextMessage build(String content, Target target) {
+        TextMessage textMessage = new TextMessage();
+        textMessage.setAt(target);
+        Text text = new Text(content);
+        textMessage.setText(text);
+        return textMessage;
+    }
+
+
+}
+
+@Data
+class Text {
+    /**
+     * 内容
+     */
+    String content;
+
+    public Text(String content) {
+        this.content = content;
     }
 }

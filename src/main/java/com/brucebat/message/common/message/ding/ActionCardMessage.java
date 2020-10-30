@@ -1,14 +1,13 @@
 package com.brucebat.message.common.message.ding;
 
-import com.brucebat.message.common.enums.MessagePropertiesEnum;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.brucebat.message.common.enums.MessageTypeEnum;
-import com.google.gson.Gson;
 import lombok.Data;
-import org.springframework.util.StringUtils;
+import lombok.EqualsAndHashCode;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @version 1.0
@@ -16,60 +15,102 @@ import java.util.Map;
  * @since : Created in 2020/7/31
  *
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class ActionCardMessage extends BaseMessage {
 
-    /**
-     * 标题
-     */
-    private String title;
-
-    /**
-     * markdown格式文本
-     */
-    private String text;
-
-    /**
-     * 0-按钮竖直排列，1-按钮横向排列
-     */
-    private String btnOrientation;
-
-    /**
-     * 单个按钮标题
-     */
-    private String singleTitle;
-
-    /**
-     * 单个按钮url地址
-     */
-    private String singleUrl;
-
-
-    /**
-     * 按钮时间
-     */
-    private List<Button> buttons;
+    private ActionCard actionCard;
 
     public ActionCardMessage() {
         this.msgType = MessageTypeEnum.ACTION_CARD.getType();
     }
 
-    @Override
-    public String toMessage() {
-        Map<String, Object> actionCardMessage = new HashMap<>(2);
-        actionCardMessage.put(MessagePropertiesEnum.MSG_TYPE.getValue(), msgType);
-        Map<String, Object> actionItems = new HashMap<>(8);
-        actionItems.put(MessagePropertiesEnum.TITLE.getValue(), title);
-        actionItems.put(MessagePropertiesEnum.TEXT.getValue(), text);
-        actionItems.put(MessagePropertiesEnum.BTN_ORIENTATION.getValue(), btnOrientation);
-        if (StringUtils.isEmpty(singleTitle)) {
-            actionItems.put(MessagePropertiesEnum.BTNS.getValue(), buttons);
-        } else {
-            actionItems.put(MessagePropertiesEnum.SINGLE_TITLE.getValue(), singleTitle);
-            actionItems.put(MessagePropertiesEnum.SINGLE_URL.getValue(), singleUrl);
-        }
-        actionCardMessage.put(MessagePropertiesEnum.ACTIONCARD.getValue(), actionItems);
-        Gson gson = new Gson();
-        return gson.toJson(actionCardMessage);
+    /**
+     * 单个按钮独立跳转
+     *
+     * @param title 标题
+     * @param text 按钮内容
+     * @param btnOrientation 按钮样式
+     * @param singleTitle 按钮标题
+     * @param singleUrl 按钮地址
+     * @return 创建完的事件消息对象
+     */
+    public static ActionCardMessage build(String title, String text, String btnOrientation, String singleTitle, String singleUrl) {
+        return build(title, text, btnOrientation, singleTitle, singleUrl, null);
     }
+
+    /**
+     * 多个按钮跳转的事件消息
+     *
+     * @param title 标题
+     * @param text 文本内容
+     * @param btnOrientation 按钮样式
+     * @param buttons 按钮
+     * @return 创建完的事件消息
+     */
+    public static ActionCardMessage build(String title, String text, String btnOrientation, List<Button> buttons) {
+        return build(title, text, btnOrientation, null, null, buttons);
+    }
+
+    private static ActionCardMessage build(String title, String text, String btnOrientation, String singleTitle, String singleUrl, List<Button> buttons) {
+        ActionCardMessage actionCardMessage = new ActionCardMessage();
+        ActionCard actionCard = new ActionCard();
+        actionCard.setTitle(title);
+        actionCard.setText(text);
+        actionCard.setBtnOrientation(btnOrientation);
+        if (StringUtils.isNotBlank(singleTitle) && StringUtils.isNotBlank(singleUrl)) {
+            actionCard.setSingleTitle(singleTitle);
+            actionCard.setSingleUrl(singleUrl);
+        }
+        if (CollectionUtils.isNotEmpty(buttons)) {
+            actionCard.setButtons(buttons);
+        }
+        actionCardMessage.setActionCard(actionCard);
+        return actionCardMessage;
+    }
+
+}
+
+@Data
+class ActionCard {
+    /**
+     * 首屏会话透出的展示内容
+     */
+    private String title;
+    /**
+     * markdown格式的消息
+     */
+    private String text;
+    /**
+     * 0-按钮竖直排列，1-按钮横向排列
+     */
+    private String btnOrientation;
+    /**
+     * 单个按钮的标题。(设置此项和singleURL后btns无效)
+     */
+    private String singleTitle;
+    /**
+     * 点击singleTitle按钮触发的URL
+     */
+    @JSONField(name = "singleURL")
+    private String singleUrl;
+
+    /**
+     * 按钮
+     */
+    @JSONField(name = "btns")
+    private List<Button> buttons;
+}
+
+@Data
+class Button {
+    /**
+     * 按钮标题
+     */
+    private String title;
+    /**
+     * 点击按钮触发的URL
+     */
+    @JSONField(name = "actionURL")
+    private String actionUrl;
 }

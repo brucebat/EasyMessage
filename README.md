@@ -17,7 +17,7 @@
 <dependency>
   <groupId>com.brucebat</groupId>
   <artifactId>spring-boot-starter-message</artifactId>
-  <version>1.0.0-RELEASE</version>
+  <version>1.1.0-RELEASE</version>
 </dependency>
 ```
 
