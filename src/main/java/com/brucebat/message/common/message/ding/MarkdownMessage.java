@@ -5,13 +5,16 @@ import com.brucebat.message.common.enums.MessageTypeEnum;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.Objects;
 
 
 /**
  * 钉钉markdown类型消息类
  *
- * @version 1.0
  * @author : Sun Tianyu
+ * @version 1.0
  * @since : Created in 2020/7/21
  */
 @EqualsAndHashCode(callSuper = true)
@@ -25,9 +28,18 @@ public class MarkdownMessage extends BaseMessage {
     }
 
     public static MarkdownMessage build(String title, String text, Target target) {
+        if (Objects.nonNull(target) && CollectionUtils.isNotEmpty(target.getAtMobiles())) {
+            StringBuilder atText = new StringBuilder("\n\n");
+            for (String phone : target.getAtMobiles()) {
+                atText.append("@").append(phone);
+            }
+            text = text + atText;
+        }
         Markdown markdown = new Markdown(title, text);
         MarkdownMessage markdownMessage = new MarkdownMessage();
-        markdownMessage.setAt(target);
+        if (Objects.nonNull(target)) {
+            markdownMessage.setAt(target);
+        }
         markdownMessage.setMarkdown(markdown);
         return markdownMessage;
     }
