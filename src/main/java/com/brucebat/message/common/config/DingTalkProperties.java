@@ -1,5 +1,6 @@
 package com.brucebat.message.common.config;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -9,43 +10,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author : Sun Tianyu
  * @since : Created in 2020/7/23
  */
-@ConfigurationProperties(prefix = "ding.talk.robot")
+@ConfigurationProperties(prefix = "message.ding.talk.robot")
+@Data
 public class DingTalkProperties {
 
     /**
-     * 通知地址
+     * 钉钉机器人令牌
      */
-    private String notifyUrl;
+    private String accessToken;
     /**
      * 是否加签
      */
-    private boolean signEnable;
+    private boolean enableSign;
     /**
      * 签名
      */
-    private String signature;
-
-    public String getNotifyUrl() {
-        return notifyUrl;
-    }
-
-    public void setNotifyUrl(String notifyUrl) {
-        this.notifyUrl = notifyUrl;
-    }
-
-    public boolean isSignEnable() {
-        return signEnable;
-    }
-
-    public void setSignEnable(boolean signEnable) {
-        this.signEnable = signEnable;
-    }
-
-    public String getSignature() {
-        return signature;
-    }
-
-    public void setSignature(String signature) {
-        this.signature = signature;
-    }
+    private String encryptKey;
 }
