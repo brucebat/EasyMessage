@@ -11,13 +11,16 @@
 - [ ] 企业微信机器人
 - [ ] 飞书机器人
 
+## 定位
+本工具定位为常见消息推送服务的调用实现，每种消息推送的限流/内容聚合处理需要使用方自行处理。
+
 ## 使用方式
 
 ```xml
 <dependency>
   <groupId>com.brucebat</groupId>
   <artifactId>spring-boot-starter-message</artifactId>
-  <version>1.1.0-RELEASE</version>
+  <version>1.2.0-RELEASE</version>
 </dependency>
 ```
 

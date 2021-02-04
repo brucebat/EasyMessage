@@ -2,7 +2,6 @@ package com.brucebat.message.service;
 
 
 import com.alibaba.fastjson.JSON;
-import com.brucebat.message.common.annotation.Limiter;
 import com.brucebat.message.common.config.DingTalkProperties;
 import com.brucebat.message.common.exception.MessageException;
 import com.brucebat.message.common.message.ding.BaseMessage;
@@ -31,7 +30,7 @@ public class DingTalkService {
 
     private static final Logger log = LoggerFactory.getLogger(DingTalkService.class);
 
-    private DingTalkProperties dingTalkProperties;
+    private final DingTalkProperties dingTalkProperties;
 
 
     @Autowired
@@ -39,18 +38,6 @@ public class DingTalkService {
 
     public DingTalkService(DingTalkProperties dingTalkProperties) {
         this.dingTalkProperties = dingTalkProperties;
-    }
-
-    /**
-     * 发送消息
-     * 增加限流处理，每分钟最多发送20次
-     *
-     * @param message 消息内容
-     * @throws MessageException 消息异常
-     */
-    @Limiter(permitsPerSecond = 0.3)
-    public void sendWithLimit(BaseMessage message) throws MessageException {
-        send(message);
     }
 
     /**

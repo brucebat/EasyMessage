@@ -35,7 +35,7 @@ public class ActionCardMessage extends BaseMessage {
      * @param singleUrl 按钮地址
      * @return 创建完的事件消息对象
      */
-    public static ActionCardMessage build(String title, String text, String btnOrientation, String singleTitle, String singleUrl) {
+    public static ActionCardMessage buildSingleButton(String title, String text, String btnOrientation, String singleTitle, String singleUrl) {
         return build(title, text, btnOrientation, singleTitle, singleUrl, null);
     }
 
@@ -48,7 +48,7 @@ public class ActionCardMessage extends BaseMessage {
      * @param buttons 按钮
      * @return 创建完的事件消息
      */
-    public static ActionCardMessage build(String title, String text, String btnOrientation, List<Button> buttons) {
+    public static ActionCardMessage buildMultipleButtons(String title, String text, String btnOrientation, List<Button> buttons) {
         return build(title, text, btnOrientation, null, null, buttons);
     }
 
