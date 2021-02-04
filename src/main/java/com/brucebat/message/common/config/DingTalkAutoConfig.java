@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 public class DingTalkAutoConfig {
 
     @Bean
-    @ConditionalOnMissingBean
+    @ConditionalOnMissingBean(DingTalkService.class)
     public DingTalkService dingTalkService(DingTalkProperties dingTalkProperties) {
         return new DingTalkService(dingTalkProperties);
     }
