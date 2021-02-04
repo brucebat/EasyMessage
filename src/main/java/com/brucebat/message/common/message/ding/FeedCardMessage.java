@@ -9,8 +9,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.*;
 
 /**
+ * 钉钉FeedCard类型消息
+ *
  * @version 1.0
- * @author: Sun Tianyu
+ * @author : Sun Tianyu
  * @since : Created in 2020/8/1
  *
  */

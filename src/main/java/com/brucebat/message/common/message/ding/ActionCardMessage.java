@@ -10,8 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 
 /**
+ * 钉钉ActionCard类型消息
+ *
  * @version 1.0
- * @author: Sun Tianyu
+ * @author : Sun Tianyu
  * @since : Created in 2020/7/31
  *
  */

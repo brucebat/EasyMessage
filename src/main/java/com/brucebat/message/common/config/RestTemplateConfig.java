@@ -8,8 +8,10 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * Spring原生http工具
+ *
  * @version 1.0
- * @author: Sun Tianyu
+ * @author : Sun Tianyu
  * @since : Created in 2020/7/27
  *
  */

@@ -170,7 +170,7 @@
                         </goals>
                         <configuration>
                             <!-- 禁用java 8 的DocLint新特性，以确保当javadoc有编译错误时，也能正常生成javadoc jar包-->
-                            <additionalparam>-Xdoclint:none</additionalparam>
+<!--                            <additionalparam>-Xdoclint:none</additionalparam>-->
                         </configuration>
                     </execution>
                 </executions>

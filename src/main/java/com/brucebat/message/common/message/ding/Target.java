@@ -5,6 +5,8 @@ import lombok.Data;
 import java.util.List;
 
 /**
+ * 钉钉消息推送推送
+ *
  * @author Sun Tianyu
  * @version 1.0
  * @since  Created in 2020/10/30

@@ -3,12 +3,13 @@ package com.brucebat.message.common.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @version 1.0
- * @author: Sun Tianyu
- * @since : Created in 2020/7/23
+ * 钉钉配置信息类
  *
+ * @version 1.0
+ * @author : Sun Tianyu
+ * @since : Created in 2020/7/23
  */
-@ConfigurationProperties(prefix = "dingtalk.robot")
+@ConfigurationProperties(prefix = "ding.talk.robot")
 public class DingTalkProperties {
 
     /**

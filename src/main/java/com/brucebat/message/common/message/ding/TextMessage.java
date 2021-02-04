@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 钉钉文本类消息
+ *
  * @version 1.0
- * @author: Sun Tianyu
+ * @author : Sun Tianyu
  * @since : Created in 2020/7/22
  */
 @EqualsAndHashCode(callSuper = true)

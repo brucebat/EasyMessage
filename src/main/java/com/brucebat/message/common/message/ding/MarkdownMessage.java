@@ -8,10 +8,11 @@ import lombok.EqualsAndHashCode;
 
 
 /**
+ * 钉钉markdown类型消息类
+ *
  * @version 1.0
- * @author: Sun Tianyu
+ * @author : Sun Tianyu
  * @since : Created in 2020/7/21
- * markdown格式消息类
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

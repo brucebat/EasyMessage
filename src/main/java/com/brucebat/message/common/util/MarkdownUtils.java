@@ -3,8 +3,10 @@ package com.brucebat.message.common.util;
 import org.springframework.util.StringUtils;
 
 /**
+ * Markdown工具类
+ *
  * @version 1.0
- * @author: Sun Tianyu
+ * @author : Sun Tianyu
  * @since  Created in 2020/7/21
  */
 public class MarkdownUtils {

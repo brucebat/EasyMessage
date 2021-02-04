@@ -21,10 +21,11 @@ import javax.crypto.spec.SecretKeySpec;
 import java.net.URLEncoder;
 
 /**
+ * 钉钉消息服务
+ *
  * @version 1.0
- * @author: Sun Tianyu
+ * @author : Sun Tianyu
  * @since : Created in 2020/7/22
- *  钉钉消息服务
  */
 public class DingTalkService {
 

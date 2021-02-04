@@ -1,10 +1,11 @@
 package com.brucebat.message.common.enums;
 
 /**
+ * 钉钉消息类型枚举类
+ *
  * @version 1.0
- * @author: Sun Tianyu
- * @since: Created in 2020/7/21
- *  钉钉消息类型枚举类
+ * @author : Sun Tianyu
+ * @since : Created in 2020/7/21
  */
 public enum MessageTypeEnum {
     /**
