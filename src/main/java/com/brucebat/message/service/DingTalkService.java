@@ -7,7 +7,6 @@ import com.brucebat.message.common.config.DingTalkProperties;
 import com.brucebat.message.common.exception.MessageException;
 import com.brucebat.message.common.message.ding.BaseMessage;
 import com.brucebat.message.common.util.HttpUtil;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -16,6 +15,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Objects;
 
 /**
@@ -143,7 +143,7 @@ public class DingTalkService {
             Mac mac = Mac.getInstance("HmacSHA256");
             mac.init(new SecretKeySpec(encryptKey.getBytes(StandardCharsets.UTF_8), "HmacSHA256"));
             byte[] signData = mac.doFinal(signStr.getBytes(StandardCharsets.UTF_8));
-            sign = URLEncoder.encode(new String(Base64.encodeBase64(signData)), ENCODE_UTF_8);
+            sign = URLEncoder.encode(new String(Base64.getEncoder().encode(signData)), ENCODE_UTF_8);
         } catch (Exception e) {
             log.error("[Sign error] something wrong happened, caused by : {}", e);
         }

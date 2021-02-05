@@ -1,6 +1,7 @@
 package com.brucebat.message.common.config;
 
 import com.brucebat.message.service.DingTalkService;
+import com.brucebat.message.service.MailService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -15,12 +16,18 @@ import org.springframework.context.annotation.Configuration;
  *
  */
 @Configuration
-@EnableConfigurationProperties(DingTalkProperties.class)
-public class DingTalkAutoConfig {
+@EnableConfigurationProperties({DingTalkProperties.class, MailProperties.class})
+public class MessageAutoConfig {
 
     @Bean
     @ConditionalOnMissingBean(DingTalkService.class)
     public DingTalkService dingTalkService(DingTalkProperties dingTalkProperties) {
         return new DingTalkService(dingTalkProperties);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(MailService.class)
+    public MailService mailService(MailProperties mailProperties) {
+        return new MailService(mailProperties);
     }
 }
