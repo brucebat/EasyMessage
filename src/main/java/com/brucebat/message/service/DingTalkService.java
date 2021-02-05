@@ -7,9 +7,9 @@ import com.brucebat.message.common.config.DingTalkProperties;
 import com.brucebat.message.common.exception.MessageException;
 import com.brucebat.message.common.message.ding.BaseMessage;
 import com.brucebat.message.common.util.HttpUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -58,7 +58,7 @@ public class DingTalkService {
      * @throws MessageException 消息发送异常
      */
     public boolean send(BaseMessage message) throws MessageException {
-        if (Objects.isNull(dingTalkProperties) || StringUtils.isEmpty(dingTalkProperties.getAccessToken())) {
+        if (Objects.isNull(dingTalkProperties) || StringUtils.isBlank(dingTalkProperties.getAccessToken())) {
             throw new MessageException("sw-0001", "未配置钉钉机器人消息发送所需的信息");
         }
         return send(message, dingTalkProperties.getAccessToken(), dingTalkProperties.isEnableSign(), dingTalkProperties.getEncryptKey());
@@ -73,7 +73,7 @@ public class DingTalkService {
      * @throws MessageException 消息推送异常
      */
     public boolean send(BaseMessage message, String accessToken) throws MessageException {
-        if (StringUtils.isEmpty(accessToken)) {
+        if (StringUtils.isBlank(accessToken)) {
             throw new MessageException("sw-0001", "钉钉机器人令牌不存在");
         }
         return send(message, accessToken, false, null);
@@ -91,12 +91,12 @@ public class DingTalkService {
      */
     public boolean send(BaseMessage message, String accessToken, boolean enableSign, String encryptKey) throws MessageException {
         String url = getUrl(accessToken, enableSign, encryptKey);
-        if (StringUtils.isEmpty(url)) {
+        if (StringUtils.isBlank(url)) {
             throw new MessageException("sw-0001", "钉钉发送地址获取失败");
         }
         String response = HttpUtil.post(url, message);
         log.info("钉钉发送结果：{}", response);
-        if (StringUtils.isEmpty(response)) {
+        if (StringUtils.isBlank(response)) {
             throw new MessageException("sw-0010", "钉钉机器人消息推送异常");
         }
         JSONObject data = JSON.parseObject(response);
@@ -115,12 +115,12 @@ public class DingTalkService {
      */
     private String getUrl(String accessToken, boolean enableSign, String encryptKey) throws MessageException {
         if (Boolean.TRUE.equals(enableSign)) {
-            if (StringUtils.isEmpty(encryptKey)) {
+            if (StringUtils.isBlank(encryptKey)) {
                 throw new MessageException("sw-0001", "param error: encrypt key missing!");
             }
             long timestamp = System.currentTimeMillis();
             String signature = sign(timestamp, encryptKey);
-            if (StringUtils.isEmpty(signature)) {
+            if (StringUtils.isBlank(signature)) {
                 return null;
             }
             return String.format(DING_ROBOT_NOTIFY_URL, accessToken) + "&timestamp=" + timestamp

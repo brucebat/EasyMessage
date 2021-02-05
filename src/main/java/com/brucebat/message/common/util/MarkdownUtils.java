@@ -1,6 +1,7 @@
 package com.brucebat.message.common.util;
 
-import org.springframework.util.StringUtils;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Markdown工具类
@@ -107,7 +108,7 @@ public class MarkdownUtils {
         }
         StringBuilder result = new StringBuilder();
         for (String text : texts){
-            if (StringUtils.isEmpty(text)) {
+            if (StringUtils.isBlank(text)) {
                 continue;
             }
             result.append("- ").append(text).append(" \n");
