@@ -29,6 +29,9 @@ public class DingTalkService {
 
     private static final Logger log = LoggerFactory.getLogger(DingTalkService.class);
 
+    /**
+     * 钉钉机器人配置信息
+     */
     private final DingTalkProperties dingTalkProperties;
 
     /**
