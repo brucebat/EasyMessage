@@ -3,6 +3,7 @@ package com.brucebat.message.service;
 import com.brucebat.message.common.config.MailProperties;
 import com.brucebat.message.common.exception.MessageException;
 import com.brucebat.message.common.message.mail.MailMessage;
+import com.brucebat.message.common.util.MailUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -67,6 +68,9 @@ public class MailService {
     private void validate(MailMessage message, String from, String password) throws MessageException {
         if (StringUtils.isBlank(from) || StringUtils.isBlank(password)) {
             throw new MessageException("sw-0001", "请求参数异常 : 发送者邮箱信息未设置");
+        }
+        if (!MailUtil.checkAddress(from)) {
+            throw new MessageException("sw-0001", "请求参数异常 : 邮箱地址");
         }
         if (Objects.isNull(message) || StringUtils.isBlank(message.getContent()) || StringUtils.isBlank(message.getTitle())) {
             throw new MessageException("sw-0001", "请求参数异常 : 邮件内容不能为空");

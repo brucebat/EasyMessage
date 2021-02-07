@@ -17,6 +17,11 @@ public class MailUtil {
     private static final int MAIL_ADDRESS_PART_NUMBER = 2;
 
     /**
+     * 邮箱地址正则表达式
+     */
+    private static final String MAIL_ADDRESS_REGEX = "[a-zA-Z0-9_]+[@][a-z0-9]{2,3}[.][a-z]{2,3}";
+
+    /**
      * 获取邮箱host
      *
      * @param mailAddress 邮箱地址
@@ -31,5 +36,18 @@ public class MailUtil {
             return null;
         }
         return parts[1];
+    }
+
+    /**
+     * 进行邮箱地址检查
+     *
+     * @param mailAddress 邮箱地址
+     * @return 是否为邮箱地址
+     */
+    public static boolean checkAddress(String mailAddress) {
+        if (StringUtils.isBlank(mailAddress)) {
+            return false;
+        }
+        return mailAddress.matches(MAIL_ADDRESS_REGEX);
     }
 }
