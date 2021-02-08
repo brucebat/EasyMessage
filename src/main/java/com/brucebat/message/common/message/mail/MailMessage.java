@@ -25,11 +25,20 @@ public class MailMessage implements Serializable {
     private String content;
     /**
      * 邮件类型
+     * @see com.brucebat.message.common.enums.MailTypeEnum
      */
     private String mailType;
     /**
-     * 收件人
+     * 收件人邮箱地址
      */
-    private List<String> to;
+    private List<String> toAddress;
+    /**
+     * 抄送人邮箱地址，选填
+     */
+    private List<String> ccAddress;
+    /**
+     * 密送人地址，选填
+     */
+    private List<String> bccAddress;
 
 }

@@ -23,4 +23,24 @@ public class MailProperties {
      * 发送者邮箱密码/授权码
      */
     private String password;
+
+    /**
+     * 连接超时时间
+     */
+    private Integer connectTimeout;
+
+    /**
+     * 邮件发送超时时间
+     */
+    private Integer writeTimeout;
+
+    /**
+     * 邮件接收超时时间
+     */
+    private Integer receiveTimeout;
+
+    /**
+     * 是否开启debug模式
+     */
+    private Boolean debugMode;
 }

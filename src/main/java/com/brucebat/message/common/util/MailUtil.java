@@ -19,7 +19,7 @@ public class MailUtil {
     /**
      * 邮箱地址正则表达式
      */
-    private static final String MAIL_ADDRESS_REGEX = "[a-zA-Z0-9_]+[@][a-z0-9]{2,3}[.][a-z]{2,3}";
+    private static final String MAIL_ADDRESS_REGEX = "^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$";
 
     /**
      * 获取邮箱host
