@@ -3,13 +3,18 @@
 ## 简介
 用于集成一些常见的发送信息方式：
 - [x] 钉钉机器人
-    - [x] 消息发送限流（基于Guava实现）
     - [x] 支持文本、markdown、link、actionCard等全部格式的消息发送
-- [ ] 邮件
-    - [ ] 支持纯文本邮件发送
-    - [ ] 支持html格式邮件发送
+    - [x] 支持配置文件或动态传入钉钉机器人accessToken和签名
+- [x] 邮件
+    - [x] 支持纯文本邮件发送
+      - [x] 支持无附件纯文本邮件
+    - [x] 支持html格式邮件发送
+      - [x] 支持无附件富文本邮件
 - [ ] 企业微信机器人
 - [ ] 飞书机器人
+
+## 定位
+本工具定位为常见消息推送服务的调用实现，每种消息推送的限流/内容聚合处理需要使用方自行处理。
 
 ## 使用方式
 
@@ -17,7 +22,7 @@
 <dependency>
   <groupId>com.brucebat</groupId>
   <artifactId>spring-boot-starter-message</artifactId>
-  <version>1.1.0-RELEASE</version>
+  <version>1.2.0-RELEASE</version>
 </dependency>
 ```
 

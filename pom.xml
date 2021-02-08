@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.brucebat</groupId>
     <artifactId>spring-boot-starter-message</artifactId>
-    <version>1.1.0-RELEASE</version>
+    <version>1.2.0-RELEASE</version>
     <name>spring-boot-starter-message</name>
     <description>easy for messaging</description>
 
@@ -19,11 +19,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -36,7 +31,19 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
             <optional>true</optional>
+        </dependency>
+        <!--  okHttp  -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>3.10.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -56,26 +63,22 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.11</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+        <!--    集合工具类    -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>4.4</version>
         </dependency>
-
-
-
-        <!-- guava缓存工具 -->
+        <!--    邮件服务    -->
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>29.0-jre</version>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
         </dependency>
-        <!-- aop -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
         </dependency>
 
 
@@ -170,7 +173,7 @@
                         </goals>
                         <configuration>
                             <!-- 禁用java 8 的DocLint新特性，以确保当javadoc有编译错误时，也能正常生成javadoc jar包-->
-                            <additionalparam>-Xdoclint:none</additionalparam>
+<!--                            <additionalparam>-Xdoclint:none</additionalparam>-->
                         </configuration>
                     </execution>
                 </executions>

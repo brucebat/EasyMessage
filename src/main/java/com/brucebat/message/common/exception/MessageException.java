@@ -4,10 +4,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * @version 1.0
- * @author: Sun Tianyu
- * @since : Created in 2020/7/25
+ * 消息异常类
  *
+ * @version 1.0
+ * @author : Sun Tianyu
+ * @since : Created in 2020/7/25
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

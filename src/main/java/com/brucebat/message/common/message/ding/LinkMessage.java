@@ -10,8 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 钉钉Link类型消息
+ *
  * @version 1.0
- * @author: Sun Tianyu
+ * @author : Sun Tianyu
  * @since : Created in 2020/7/29
  */
 @EqualsAndHashCode(callSuper = true)

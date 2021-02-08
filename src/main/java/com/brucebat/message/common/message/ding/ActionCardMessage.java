@@ -10,8 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 
 /**
+ * 钉钉ActionCard类型消息
+ *
  * @version 1.0
- * @author: Sun Tianyu
+ * @author : Sun Tianyu
  * @since : Created in 2020/7/31
  *
  */
@@ -35,7 +37,7 @@ public class ActionCardMessage extends BaseMessage {
      * @param singleUrl 按钮地址
      * @return 创建完的事件消息对象
      */
-    public static ActionCardMessage build(String title, String text, String btnOrientation, String singleTitle, String singleUrl) {
+    public static ActionCardMessage buildSingleButton(String title, String text, String btnOrientation, String singleTitle, String singleUrl) {
         return build(title, text, btnOrientation, singleTitle, singleUrl, null);
     }
 
@@ -48,7 +50,7 @@ public class ActionCardMessage extends BaseMessage {
      * @param buttons 按钮
      * @return 创建完的事件消息
      */
-    public static ActionCardMessage build(String title, String text, String btnOrientation, List<Button> buttons) {
+    public static ActionCardMessage buildMultipleButtons(String title, String text, String btnOrientation, List<Button> buttons) {
         return build(title, text, btnOrientation, null, null, buttons);
     }
 
