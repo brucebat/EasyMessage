@@ -10,6 +10,9 @@
       - [x] 支持无附件纯文本邮件
     - [x] 支持html格式邮件发送
       - [x] 支持无附件富文本邮件
+- [x] 钉钉工作通知
+  - [x] 钉钉应用获取accessToken、获取userId相关接口
+  - [x] 钉钉模板工作通知、普通工作通知消息发送
 - [ ] 企业微信机器人
 - [ ] 飞书机器人
 
@@ -23,7 +26,7 @@
 <dependency>
   <groupId>com.brucebat</groupId>
   <artifactId>spring-boot-starter-message</artifactId>
-  <version>1.2.0-RELEASE</version>
+  <version>1.3.0-RELEASE</version>
 </dependency>
 ```
 
