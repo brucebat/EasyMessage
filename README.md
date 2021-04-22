@@ -109,12 +109,12 @@ public class Test {
 ```
 
 ## 公众号
-<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/%E6%90%9C%E7%B4%A2%E6%A1%86%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.jpeg" width="400" alt="Brucebat的伪技术鱼塘" align="center">
+<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/%E6%90%9C%E7%B4%A2%E6%A1%86%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" width="400" alt="Brucebat的伪技术鱼塘" align="center">
 
 ## 致谢
 
 非常感谢JetBrain的支持，提供了免费使用开发工具的机会
 
-<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/image.jpeg" width="300" height="300" align="center"  alt="jetbrain" />
+<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/image.png" width="300" height="300" align="center"  alt="jetbrain" />
 
 [来自EasyMessage](https://www.jetbrains.com/?from=EasyMessage)
