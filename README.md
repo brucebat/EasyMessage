@@ -1,7 +1,7 @@
 # EasyMessage
 
 <p>
-    <a href="https://github.com/brucebat/EasyMessage##公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-Brucebat%E7%9A%84%E4%BC%AA%E6%8A%80%E6%9C%AF%E9%B1%BC%E5%A1%98-red" alt=公众号"/></a>
+    <a href="https://github.com/brucebat/EasyMessage/tree/develop#%E5%85%AC%E4%BC%97%E5%8F%B7"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-Brucebat%E7%9A%84%E4%BC%AA%E6%8A%80%E6%9C%AF%E9%B1%BC%E5%A1%98-red" alt=公众号"/></a>
 </p>
 
 ## 简介
