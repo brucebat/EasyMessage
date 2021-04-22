@@ -115,6 +115,6 @@ public class Test {
 
 非常感谢JetBrain的支持，提供了免费使用开发工具的机会
 
-![JetBrains](images/image.jpeg)
+![JetBrains](https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/image.jpeg)
 
 [来自EasyMessage](https://www.jetbrains.com/?from=EasyMessage)
