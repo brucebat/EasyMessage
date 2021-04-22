@@ -3,7 +3,6 @@ package com.brucebat.message.common.util;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
-import okhttp3.logging.HttpLoggingInterceptor;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -22,14 +21,11 @@ public class HttpUtil {
 
     static {
         //第三方的日志拦截器
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
         OK_HTTP_CLIENT = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
-                .connectTimeout(5, TimeUnit.SECONDS)
-                .readTimeout(5, TimeUnit.SECONDS)
-                .writeTimeout(5, TimeUnit.SECONDS)
-                .addInterceptor(logging)
+                .connectTimeout(3, TimeUnit.SECONDS)
+                .readTimeout(4, TimeUnit.SECONDS)
+                .writeTimeout(4, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(false)
                 .build();
     }

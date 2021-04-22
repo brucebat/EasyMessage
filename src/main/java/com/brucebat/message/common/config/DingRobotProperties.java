@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "message.ding.talk.robot")
 @Data
-public class DingTalkProperties {
+public class DingRobotProperties {
 
     /**
      * 钉钉机器人令牌
