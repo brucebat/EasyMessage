@@ -115,6 +115,6 @@ public class Test {
 
 非常感谢JetBrain的支持，提供了免费使用开发工具的机会
 
-![JetBrains](images/jetbrains-variant-2.png)
+![JetBrains](https://static01.imgkr.com/temp/1902eb048e414c54a6199f90c66eaf33.jpeg)
 
 [来自EasyMessage](https://www.jetbrains.com/?from=EasyMessage)
