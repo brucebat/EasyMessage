@@ -1,5 +1,9 @@
 # EasyMessage
 
+<p>
+    <a href="#公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-Brucebat%E7%9A%84%E4%BC%AA%E6%8A%80%E6%9C%AF%E9%B1%BC%E5%A1%98-red" alt=公众号"/></a>
+</p>
+
 ## 简介
 用于集成一些常见的发送信息方式：
 - [x] 钉钉机器人
@@ -104,10 +108,13 @@ public class Test {
 
 ```
 
+## 公众号
+<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/wechat.png" width="400" height="80" alt="Brucebat的伪技术鱼塘" />
+
 ## 致谢
 
 非常感谢JetBrain的支持，提供了免费使用开发工具的机会
 
-![JetBrains](images/jetbrains-variant-2.png)
+<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/image.png" width="300" height="300" align="center"  alt="jetbrain" />
 
 [来自EasyMessage](https://www.jetbrains.com/?from=EasyMessage)
