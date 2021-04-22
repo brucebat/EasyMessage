@@ -1,5 +1,9 @@
 # EasyMessage
 
+<p>
+    <a href="https://github.com/brucebat/EasyMessage##公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-Brucebat%E7%9A%84%E4%BC%AA%E6%8A%80%E6%9C%AF%E9%B1%BC%E5%A1%98-red" alt=公众号"/></a>
+</p>
+
 ## 简介
 用于集成一些常见的发送信息方式：
 - [x] 钉钉机器人
@@ -103,6 +107,9 @@ public class Test {
 }
 
 ```
+
+## 公众号
+![Brucebat的伪技术鱼塘](https://static01.imgkr.com/temp/b8874bb13ba340e7a3da171f700e7a08.png)
 
 ## 致谢
 
