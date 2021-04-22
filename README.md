@@ -109,7 +109,7 @@ public class Test {
 ```
 
 ## 公众号
-<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/%E6%90%9C%E7%B4%A2%E6%A1%86%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" width="400" height="80" alt="Brucebat的伪技术鱼塘">
+<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/wechat.png" width="400" height="80" alt="Brucebat的伪技术鱼塘" />
 
 ## 致谢
 
