@@ -109,7 +109,7 @@ public class Test {
 ```
 
 ## 公众号
-![Brucebat的伪技术鱼塘](https://static01.imgkr.com/temp/b8874bb13ba340e7a3da171f700e7a08.png)
+![Brucebat的伪技术鱼塘](https://static01.imgkr.com/temp/1cf922da4cbd4b1ab1bee3c494faf562.jpeg)
 
 ## 致谢
 
