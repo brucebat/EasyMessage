@@ -3,7 +3,7 @@ package com.brucebat.message.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.brucebat.message.common.config.DingTalkProperties;
+import com.brucebat.message.common.config.DingRobotProperties;
 import com.brucebat.message.common.exception.MessageException;
 import com.brucebat.message.common.message.ding.BaseMessage;
 import com.brucebat.message.common.util.HttpUtil;
@@ -19,20 +19,20 @@ import java.util.Base64;
 import java.util.Objects;
 
 /**
- * 钉钉消息服务
+ * 钉钉机器人消息服务
  *
  * @author : Sun Tianyu
  * @version 1.0
  * @since : Created in 2020/7/22
  */
-public class DingTalkService {
+public class DingRobotService {
 
-    private static final Logger log = LoggerFactory.getLogger(DingTalkService.class);
+    private static final Logger log = LoggerFactory.getLogger(DingRobotService.class);
 
     /**
      * 钉钉机器人配置信息
      */
-    private final DingTalkProperties dingTalkProperties;
+    private final DingRobotProperties dingRobotProperties;
 
     /**
      * 钉钉机器人消息推送地址
@@ -49,8 +49,8 @@ public class DingTalkService {
      */
     private static final String ERROR_CODE = "errcode";
 
-    public DingTalkService(DingTalkProperties dingTalkProperties) {
-        this.dingTalkProperties = dingTalkProperties;
+    public DingRobotService(DingRobotProperties dingRobotProperties) {
+        this.dingRobotProperties = dingRobotProperties;
     }
 
     /**
@@ -61,10 +61,10 @@ public class DingTalkService {
      * @throws MessageException 消息发送异常
      */
     public boolean send(BaseMessage message) throws MessageException {
-        if (Objects.isNull(dingTalkProperties) || StringUtils.isBlank(dingTalkProperties.getAccessToken())) {
+        if (Objects.isNull(dingRobotProperties) || StringUtils.isBlank(dingRobotProperties.getAccessToken())) {
             throw new MessageException("sw-0001", "未配置钉钉机器人消息发送所需的信息");
         }
-        return send(message, dingTalkProperties.getAccessToken(), dingTalkProperties.isEnableSign(), dingTalkProperties.getEncryptKey());
+        return send(message, dingRobotProperties.getAccessToken(), dingRobotProperties.isEnableSign(), dingRobotProperties.getEncryptKey());
     }
 
     /**
