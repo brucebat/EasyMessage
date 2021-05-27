@@ -1,4 +1,4 @@
-package com.brucebat.message.service;
+package com.brucebat.message.service.dingtalk;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

@@ -1,4 +1,4 @@
-package com.brucebat.message.service;
+package com.brucebat.message.service.mail;
 
 import com.brucebat.message.common.config.MailProperties;
 import com.brucebat.message.common.enums.MailPropertiesEnum;

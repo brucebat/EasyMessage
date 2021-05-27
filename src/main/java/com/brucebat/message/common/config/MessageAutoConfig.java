@@ -1,9 +1,9 @@
 package com.brucebat.message.common.config;
 
-import com.brucebat.message.service.DingAppMessageService;
-import com.brucebat.message.service.DingAppService;
-import com.brucebat.message.service.DingRobotService;
-import com.brucebat.message.service.MailService;
+import com.brucebat.message.service.dingtalk.DingAppMessageService;
+import com.brucebat.message.service.dingtalk.DingAppService;
+import com.brucebat.message.service.dingtalk.DingRobotService;
+import com.brucebat.message.service.mail.MailService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
