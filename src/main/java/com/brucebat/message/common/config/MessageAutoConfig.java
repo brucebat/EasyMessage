@@ -4,6 +4,7 @@ import com.brucebat.message.service.dingtalk.DingAppMessageService;
 import com.brucebat.message.service.dingtalk.DingAppService;
 import com.brucebat.message.service.dingtalk.DingRobotService;
 import com.brucebat.message.service.mail.MailService;
+import com.brucebat.message.service.wechat.WechatRobotService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -65,5 +66,16 @@ public class MessageAutoConfig {
     @ConditionalOnMissingBean(DingAppMessageService.class)
     public DingAppMessageService dingAppMessageService() {
         return new DingAppMessageService();
+    }
+
+    /**
+     * 创建微信机器人消息服务类
+     *
+     * @return 获取微信机器人消息服务类
+     */
+    @Bean
+    @ConditionalOnMissingBean(WechatRobotService.class)
+    public WechatRobotService wechatRobotService() {
+        return new WechatRobotService();
     }
 }
