@@ -43,5 +43,5 @@ public class DingWorkNotice implements Serializable {
      * 消息内容
      */
     @JSONField(name = "msg")
-    private BaseMessage message;
+    private DingTalkBaseMessage message;
 }

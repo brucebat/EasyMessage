@@ -14,7 +14,7 @@ import java.io.Serializable;
  *
  */
 @Data
-public class BaseMessage implements Serializable {
+public class DingTalkBaseMessage implements Serializable {
 
     @JSONField(name = "msgtype")
     protected String msgType;

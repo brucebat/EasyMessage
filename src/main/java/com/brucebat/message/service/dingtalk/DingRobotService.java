@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.brucebat.message.common.config.DingRobotProperties;
 import com.brucebat.message.common.exception.MessageException;
-import com.brucebat.message.common.message.ding.BaseMessage;
+import com.brucebat.message.common.message.ding.DingTalkBaseMessage;
 import com.brucebat.message.common.util.HttpUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -60,7 +60,7 @@ public class DingRobotService {
      * @return 钉钉消息推送结果
      * @throws MessageException 消息发送异常
      */
-    public boolean send(BaseMessage message) throws MessageException {
+    public boolean send(DingTalkBaseMessage message) throws MessageException {
         if (Objects.isNull(dingRobotProperties) || StringUtils.isBlank(dingRobotProperties.getAccessToken())) {
             throw new MessageException("sw-0001", "未配置钉钉机器人消息发送所需的信息");
         }
@@ -75,7 +75,7 @@ public class DingRobotService {
      * @return 是否发送成功
      * @throws MessageException 消息推送异常
      */
-    public boolean send(BaseMessage message, String accessToken) throws MessageException {
+    public boolean send(DingTalkBaseMessage message, String accessToken) throws MessageException {
         if (StringUtils.isBlank(accessToken)) {
             throw new MessageException("sw-0001", "钉钉机器人令牌不存在");
         }
@@ -92,7 +92,7 @@ public class DingRobotService {
      * @return 是否发送成功
      * @throws MessageException 消息发送异常
      */
-    public boolean send(BaseMessage message, String accessToken, boolean enableSign, String encryptKey) throws MessageException {
+    public boolean send(DingTalkBaseMessage message, String accessToken, boolean enableSign, String encryptKey) throws MessageException {
         String url = getUrl(accessToken, enableSign, encryptKey);
         if (StringUtils.isBlank(url)) {
             throw new MessageException("sw-0001", "钉钉发送地址获取失败");

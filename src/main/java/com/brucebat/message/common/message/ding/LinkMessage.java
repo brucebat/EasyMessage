@@ -4,10 +4,7 @@ package com.brucebat.message.common.message.ding;
 import com.brucebat.message.common.enums.MessageTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-
-import java.util.HashMap;
-import java.util.Map;
+import lombok.experimental.Accessors;
 
 /**
  * 钉钉Link类型消息
@@ -18,7 +15,8 @@ import java.util.Map;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class LinkMessage extends BaseMessage {
+@Accessors
+public class LinkMessage extends DingTalkBaseMessage {
 
     private Link link;
 
