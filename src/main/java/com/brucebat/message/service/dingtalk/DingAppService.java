@@ -34,7 +34,7 @@ public class DingAppService {
      * @return 获取应用的调用accessToken
      * @throws MessageException 消息异常
      */
-    public String getAccessToken() throws MessageException {
+    public String getAccessToken() {
         return this.getAccessToken(dingAppProperties.getAppKey(), dingAppProperties.getAppSecret());
     }
 
@@ -46,7 +46,7 @@ public class DingAppService {
      * @return 调用令牌
      * @throws MessageException 消息异常
      */
-    public String getAccessToken(String appKey, String appSecret) throws MessageException {
+    public String getAccessToken(String appKey, String appSecret) {
         if (StringUtils.isBlank(appKey) || StringUtils.isBlank(appSecret)) {
             throw new MessageException("sw-0001", "请求参数不能为空 : appKey或appSecret为空");
         }
@@ -70,7 +70,7 @@ public class DingAppService {
      * @return 用户id
      * @throws MessageException 消息异常
      */
-    public String getUserIdByPhone(String accessToken, String phone) throws MessageException {
+    public String getUserIdByPhone(String accessToken, String phone) {
         if (StringUtils.isBlank(accessToken) || StringUtils.isBlank(phone)) {
             throw new MessageException("sw-0001", "请求参数不能为空 : accessToken或phone为空");
         }

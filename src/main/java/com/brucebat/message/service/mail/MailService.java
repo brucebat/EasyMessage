@@ -43,7 +43,7 @@ public class MailService {
      * @return 是否发送成功
      * @throws MessageException 消息发送异常
      */
-    public boolean sendMail(MailMessage mailMessage) throws MessageException {
+    public boolean sendMail(MailMessage mailMessage) {
         if (Objects.isNull(mailProperties)) {
             throw new MessageException("sw-0001", "配置异常 : 发送邮件所需信息未进行配置");
         }
@@ -54,12 +54,12 @@ public class MailService {
      * 根据发送者和密码/授权码进行邮件发送
      *
      * @param mailMessage 邮件信息
-     * @param from 发送者
-     * @param password 发送者邮箱密码/授权码
+     * @param from        发送者
+     * @param password    发送者邮箱密码/授权码
      * @return 是否发送成功
      * @throws MessageException 消息推送异常
      */
-    public boolean sendMail(MailMessage mailMessage, String from, String password) throws MessageException {
+    public boolean sendMail(MailMessage mailMessage, String from, String password) {
         this.validate(mailMessage, from, password);
         try {
             Session session = this.initSession(from, password);
@@ -68,7 +68,7 @@ public class MailService {
             this.doSend(message, mailMessage.getMailType(), mailMessage.getContent());
             return true;
         } catch (Exception e) {
-            log.error("send mail error, execption is {}", e);
+            log.error("send mail error, exception is: ", e);
         }
         return false;
     }
@@ -77,11 +77,11 @@ public class MailService {
      * 进行请求参数校验
      *
      * @param mailMessage 消息内容
-     * @param from 发送者
-     * @param password 发送者邮箱密码/授权码
+     * @param from        发送者
+     * @param password    发送者邮箱密码/授权码
      * @throws MessageException 消息异常
      */
-    private void validate(MailMessage mailMessage, String from, String password) throws MessageException {
+    private void validate(MailMessage mailMessage, String from, String password) {
         if (StringUtils.isBlank(from) || StringUtils.isBlank(password)) {
             throw new MessageException("sw-0001", "请求参数异常 : 发送者邮箱信息未设置");
         }
@@ -99,7 +99,7 @@ public class MailService {
     /**
      * 进行邮件发送会话初始化
      *
-     * @param from 发送者邮箱地址
+     * @param from     发送者邮箱地址
      * @param password 邮箱密码/授权码
      * @return 邮箱会话
      */
@@ -130,10 +130,10 @@ public class MailService {
      * 进行实际邮件发送对象组装
      *
      * @param mailMessage 待发送邮件内容
-     * @param session 邮件发送会话
-     * @param from    发送者邮箱地址
+     * @param session     邮件发送会话
+     * @param from        发送者邮箱地址
      * @return 实际发送邮件对象
-     * @throws MessagingException 邮件发送异常
+     * @throws MessagingException           邮件发送异常
      * @throws UnsupportedEncodingException 不支持编码异常
      */
     private Message buildMessage(MailMessage mailMessage, Session session, String from) throws MessagingException, UnsupportedEncodingException {
@@ -159,13 +159,13 @@ public class MailService {
     /**
      * 根据邮件类型进行发送处理
      *
-     * @param message 待发送邮件
+     * @param message  待发送邮件
      * @param mailType 邮件类型
      * @param content  邮件内容
-     * @throws MessageException 消息发送异常
+     * @throws MessageException   消息发送异常
      * @throws MessagingException 邮件发送异常
      */
-    private void doSend(Message message, String mailType, String content) throws MessageException, MessagingException {
+    private void doSend(Message message, String mailType, String content) throws MessagingException {
         MailTypeEnum mailTypeEnum = MailTypeEnum.find(mailType);
         if (Objects.isNull(mailTypeEnum)) {
             throw new MessageException("sw-0001", "请求参数异常 : 非法邮件类型");

@@ -29,7 +29,7 @@ public class DingAppMessageService {
      * @return 钉钉服务器异步发送taskId
      * @throws MessageException 消息异常
      */
-    public String sendWorkNotice(DingWorkNotice dingWorkNotice, String accessToken) throws MessageException {
+    public String sendWorkNotice(DingWorkNotice dingWorkNotice, String accessToken) {
         this.validateParams(dingWorkNotice);
         String url = String.format(DingApiEnum.SEND_WORK_NOTICE.getApiPath(), accessToken);
         String response = HttpUtil.post(url, dingWorkNotice);
@@ -44,7 +44,7 @@ public class DingAppMessageService {
      * @return 钉钉服务器异步发送taskId
      * @throws MessageException 消息异常
      */
-    public String sendTemplateWorkNotice(DingTemplateWorkNotice templateWorkNotice, String accessToken) throws MessageException {
+    public String sendTemplateWorkNotice(DingTemplateWorkNotice templateWorkNotice, String accessToken) {
         if (Objects.isNull(templateWorkNotice) || StringUtils.isBlank(templateWorkNotice.getTemplateId())) {
             throw new MessageException("sw-0001", "请求参数不能为空");
         }
@@ -59,7 +59,7 @@ public class DingAppMessageService {
      * @param dingWorkNotice 钉钉工作通知
      * @throws MessageException 消息异常
      */
-    private void validateParams(DingWorkNotice dingWorkNotice) throws MessageException {
+    private void validateParams(DingWorkNotice dingWorkNotice) {
         if (Objects.isNull(dingWorkNotice)) {
             throw new MessageException("sw-0001", "请求参数不能为空: dingWorkNotice为空");
         }
@@ -78,7 +78,7 @@ public class DingAppMessageService {
      * @return 钉钉服务器异步发送taskId
      * @throws MessageException 消息异常
      */
-    private String handleResult(String response) throws MessageException {
+    private String handleResult(String response) {
         if (StringUtils.isBlank(response)) {
             throw new MessageException("sw-0010", "发送钉钉通知消息异常: 返回结果为空");
         }

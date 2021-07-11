@@ -60,7 +60,7 @@ public class DingRobotService {
      * @return 钉钉消息推送结果
      * @throws MessageException 消息发送异常
      */
-    public boolean send(DingTalkBaseMessage message) throws MessageException {
+    public boolean send(DingTalkBaseMessage message) {
         if (Objects.isNull(dingRobotProperties) || StringUtils.isBlank(dingRobotProperties.getAccessToken())) {
             throw new MessageException("sw-0001", "未配置钉钉机器人消息发送所需的信息");
         }
@@ -75,7 +75,7 @@ public class DingRobotService {
      * @return 是否发送成功
      * @throws MessageException 消息推送异常
      */
-    public boolean send(DingTalkBaseMessage message, String accessToken) throws MessageException {
+    public boolean send(DingTalkBaseMessage message, String accessToken) {
         if (StringUtils.isBlank(accessToken)) {
             throw new MessageException("sw-0001", "钉钉机器人令牌不存在");
         }
@@ -92,7 +92,7 @@ public class DingRobotService {
      * @return 是否发送成功
      * @throws MessageException 消息发送异常
      */
-    public boolean send(DingTalkBaseMessage message, String accessToken, boolean enableSign, String encryptKey) throws MessageException {
+    public boolean send(DingTalkBaseMessage message, String accessToken, boolean enableSign, String encryptKey) {
         String url = getUrl(accessToken, enableSign, encryptKey);
         if (StringUtils.isBlank(url)) {
             throw new MessageException("sw-0001", "钉钉发送地址获取失败");
@@ -116,7 +116,7 @@ public class DingRobotService {
      * @return 获取机器人推送地址
      * @throws MessageException 消息发送异常
      */
-    private String getUrl(String accessToken, boolean enableSign, String encryptKey) throws MessageException {
+    private String getUrl(String accessToken, boolean enableSign, String encryptKey) {
         if (Boolean.TRUE.equals(enableSign)) {
             if (StringUtils.isBlank(encryptKey)) {
                 throw new MessageException("sw-0001", "param error: encrypt key missing!");
@@ -148,7 +148,7 @@ public class DingRobotService {
             byte[] signData = mac.doFinal(signStr.getBytes(StandardCharsets.UTF_8));
             sign = URLEncoder.encode(new String(Base64.getEncoder().encode(signData)), ENCODE_UTF_8);
         } catch (Exception e) {
-            log.error("[Sign error] something wrong happened, caused by : {}", e);
+            log.error("[Sign error] something wrong happened, caused by: ", e);
         }
         return sign;
     }

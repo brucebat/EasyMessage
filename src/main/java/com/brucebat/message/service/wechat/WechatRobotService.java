@@ -25,7 +25,7 @@ public class WechatRobotService {
      * @param robotKey 机器人key
      * @return 发送结果
      */
-    public String sendRobotMessage(WechatBaseMessage message, String robotKey) throws MessageException {
+    public String sendRobotMessage(WechatBaseMessage message, String robotKey) {
         this.validateParams(message, robotKey);
         String url = String.format(WECHAT_ROBOT_NOTIFY_URL, robotKey);
         return HttpUtil.post(url, message.toMessage());
@@ -37,7 +37,7 @@ public class WechatRobotService {
      * @param message  机器人消息
      * @param robotKey 机器人key
      */
-    private void validateParams(WechatBaseMessage message, String robotKey) throws MessageException {
+    private void validateParams(WechatBaseMessage message, String robotKey) {
         if (Objects.isNull(message)) {
             throw new MessageException("sw-0001", "请求参数不能为空: message不能为空");
         }
