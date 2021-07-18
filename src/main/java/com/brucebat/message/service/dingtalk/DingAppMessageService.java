@@ -54,7 +54,7 @@ public class DingAppMessageService {
     }
 
     /**
-     * 进行参数校验
+     * 进行请求参数参数校验
      *
      * @param dingWorkNotice 钉钉工作通知
      * @throws MessageException 消息异常
