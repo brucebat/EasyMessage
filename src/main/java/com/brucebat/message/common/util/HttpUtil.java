@@ -1,6 +1,5 @@
 package com.brucebat.message.common.util;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -24,10 +23,9 @@ public class HttpUtil {
         //第三方的日志拦截器
         OK_HTTP_CLIENT = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
-                .connectTimeout(3, TimeUnit.SECONDS)
-                .readTimeout(4, TimeUnit.SECONDS)
-                .writeTimeout(4, TimeUnit.SECONDS)
-                .retryOnConnectionFailure(false)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
                 .build();
     }
 
@@ -68,7 +66,7 @@ public class HttpUtil {
             Request request = new Request.Builder().url(url).post(requestBody).build();
             return doExecuteRequest(request);
         } catch (Exception e) {
-            log.error("okhttp-post-error, exception : {}", e);
+            log.error("okhttp-post-error, exception : ", e);
         }
         return null;
     }
@@ -84,7 +82,7 @@ public class HttpUtil {
             Request request = new Request.Builder().url(url).get().build();
             return doExecuteRequest(request);
         } catch (Exception e) {
-            log.error("okhttp-get-error : {}", e);
+            log.error("okhttp-get-error : ", e);
         }
         return null;
     }
@@ -104,7 +102,7 @@ public class HttpUtil {
             }
             return Objects.nonNull(response.body()) ? response.body().string() : null;
         } catch (Exception e) {
-            log.error("okhttp-execute-error : {}", e);
+            log.error("okhttp-execute-error : ", e);
         }
         return null;
     }
