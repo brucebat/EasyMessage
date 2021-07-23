@@ -6,6 +6,8 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
+ * 钉钉应用工作通知
+ *
  * @author brucebat
  * @version 1.0
  * @since Created at 2021/4/22 2:54 下午
@@ -41,5 +43,5 @@ public class DingWorkNotice implements Serializable {
      * 消息内容
      */
     @JSONField(name = "msg")
-    private BaseMessage message;
+    private DingTalkBaseMessage message;
 }

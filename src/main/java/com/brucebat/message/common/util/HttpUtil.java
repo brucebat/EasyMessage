@@ -1,6 +1,7 @@
 package com.brucebat.message.common.util;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -39,9 +40,31 @@ public class HttpUtil {
      * @return 返回结果
      */
     public static String post(String url, Object requestParams) {
+        return doPost(url, JSONObject.toJSONString(requestParams));
+    }
+
+    /**
+     * 发起post请求
+     *
+     * @param url           请求地址
+     * @param requestParams 请求参数
+     * @return 返回结果
+     */
+    public static String post(String url, String requestParams) {
+        return doPost(url, requestParams);
+    }
+
+    /**
+     * 发起实际post请求
+     *
+     * @param url           请求地址
+     * @param requestParams 请求参数
+     * @return 返回结果
+     */
+    private static String doPost(String url, String requestParams) {
         try {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
-            RequestBody requestBody = RequestBody.create(mediaType, JSON.toJSONString(requestParams));
+            RequestBody requestBody = RequestBody.create(mediaType, requestParams);
             Request request = new Request.Builder().url(url).post(requestBody).build();
             return doExecuteRequest(request);
         } catch (Exception e) {

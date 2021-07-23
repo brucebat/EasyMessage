@@ -5,6 +5,7 @@ import com.brucebat.message.common.enums.MessageTypeEnum;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.Objects;
@@ -19,7 +20,8 @@ import java.util.Objects;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class MarkdownMessage extends BaseMessage {
+@Accessors
+public class MarkdownMessage extends DingTalkBaseMessage {
 
     private Markdown markdown;
 

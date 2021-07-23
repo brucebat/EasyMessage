@@ -3,11 +3,9 @@ package com.brucebat.message.common.message.ding;
 import com.brucebat.message.common.enums.MessageTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -19,7 +17,8 @@ import java.util.Objects;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TextMessage extends BaseMessage {
+@Accessors
+public class TextMessage extends DingTalkBaseMessage {
 
     private Text text;
 

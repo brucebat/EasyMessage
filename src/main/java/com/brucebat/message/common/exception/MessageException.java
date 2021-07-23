@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class MessageException extends Exception {
+public class MessageException extends RuntimeException {
 
     private String errorCode;
     private String errorMsg;

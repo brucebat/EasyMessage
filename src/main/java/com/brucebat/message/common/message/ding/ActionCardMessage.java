@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.brucebat.message.common.enums.MessageTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,7 +20,8 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ActionCardMessage extends BaseMessage {
+@Accessors(chain = true)
+public class ActionCardMessage extends DingTalkBaseMessage {
 
     private ActionCard actionCard;
 
