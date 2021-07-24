@@ -35,7 +35,7 @@
 <dependency>
   <groupId>com.brucebat</groupId>
   <artifactId>spring-boot-starter-message</artifactId>
-  <version>1.3.0-RELEASE</version>
+  <version>1.4.0-RELEASE</version>
 </dependency>
 ```
 
@@ -120,6 +120,6 @@ public class Test {
 
 非常感谢JetBrain的支持，提供了免费使用开发工具的机会
 
-<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/image.png" width="300" height="300" align="center"  alt="jetbrain" />
+<img src="https://bruce-app.oss-cn-hangzhou.aliyuncs.com/media/img/image.png" width="300" height="300"  alt="jetbrain" />
 
 [来自EasyMessage](https://www.jetbrains.com/?from=EasyMessage)
