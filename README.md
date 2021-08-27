@@ -9,33 +9,35 @@
 - [x] 钉钉机器人
     - [x] 支持文本、markdown、link、actionCard等全部格式的消息发送
     - [x] 支持配置文件或动态传入钉钉机器人accessToken和签名
-- [x] 邮件
-    - [x] 支持纯文本邮件发送
-      - [x] 支持无附件纯文本邮件
-    - [x] 支持html格式邮件发送
-      - [x] 支持无附件富文本邮件
 - [x] 钉钉工作通知
   - [x] 新增钉钉应用获取accessToken、获取userId相关接口
   - [x] 支持钉钉模板工作通知、普通工作通知消息发送
 - [x] 企业微信机器人
   - [x] 支持markdown类型消息发送
   - [x] 支持普通文本类型消息发送
+  - [x] 支持图文类型消息发送
+  - [x] 支持模版卡片类型消息发送
   - [ ] 支持图片类型消息发送
-  - [ ] 支持图文类型消息发送
   - [ ] 支持文件类型消息发送
 - [ ] 飞书机器人
+- [x] 邮件
+  - [x] 支持纯文本邮件发送
+    - [x] 支持无附件纯文本邮件
+  - [x] 支持html格式邮件发送
+    - [x] 支持无附件富文本邮件
 
 ## 定位
 本工具定位为常见消息推送服务的调用实现，每种消息推送的限流/内容聚合处理需要使用方自行处理。
 
 ## 使用方式
+具体使用可以参考对应本项目的[wiki](https://github.com/brucebat/EasyMessage/wiki).
 ### 1. 引入依赖
-当前 `Easy-Message` 使用Java语言编写，主要提供SpringBoot-starter方式进行接入。在使用 `Easy-Message` 之前需要引入对应的工具依赖，这里只展示maven依赖的引入，其他依赖方式可以参考：https://search.maven.org/artifact/com.brucebat/spring-boot-starter-message/1.2.0-RELEASE/jar。
+当前 `Easy-Message` 使用Java语言编写，主要提供SpringBoot-starter方式进行接入。在使用 `Easy-Message` 之前需要引入对应的工具依赖，这里只展示maven依赖的引入，其他依赖方式可以参考：https://search.maven.org/artifact/com.brucebat/spring-boot-starter-message/1.4.1-RELEASE/jar。
 ```xml
 <dependency>
   <groupId>com.brucebat</groupId>
   <artifactId>spring-boot-starter-message</artifactId>
-  <version>1.4.0-RELEASE</version>
+  <version>1.4.1-RELEASE</version>
 </dependency>
 ```
 

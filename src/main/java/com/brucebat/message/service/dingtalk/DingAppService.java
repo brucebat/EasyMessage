@@ -8,8 +8,6 @@ import com.brucebat.message.common.enums.DingResponseEnum;
 import com.brucebat.message.common.exception.MessageException;
 import com.brucebat.message.common.util.HttpUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 钉钉应用服务类
@@ -19,8 +17,6 @@ import org.slf4j.LoggerFactory;
  * @since Created at 2021/4/22 11:02 上午
  */
 public class DingAppService {
-
-    private static final Logger log = LoggerFactory.getLogger(DingAppService.class);
 
     private final DingAppProperties dingAppProperties;
 
