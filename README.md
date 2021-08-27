@@ -29,13 +29,14 @@
 本工具定位为常见消息推送服务的调用实现，每种消息推送的限流/内容聚合处理需要使用方自行处理。
 
 ## 使用方式
+具体使用可以参考对应本项目的[wiki](https://github.com/brucebat/EasyMessage/wiki).
 ### 1. 引入依赖
-当前 `Easy-Message` 使用Java语言编写，主要提供SpringBoot-starter方式进行接入。在使用 `Easy-Message` 之前需要引入对应的工具依赖，这里只展示maven依赖的引入，其他依赖方式可以参考：https://search.maven.org/artifact/com.brucebat/spring-boot-starter-message/1.2.0-RELEASE/jar。
+当前 `Easy-Message` 使用Java语言编写，主要提供SpringBoot-starter方式进行接入。在使用 `Easy-Message` 之前需要引入对应的工具依赖，这里只展示maven依赖的引入，其他依赖方式可以参考：https://search.maven.org/artifact/com.brucebat/spring-boot-starter-message/1.4.1-RELEASE/jar。
 ```xml
 <dependency>
   <groupId>com.brucebat</groupId>
   <artifactId>spring-boot-starter-message</artifactId>
-  <version>1.4.0-RELEASE</version>
+  <version>1.4.1-RELEASE</version>
 </dependency>
 ```
 

@@ -16,9 +16,15 @@ import java.io.Serializable;
 @Data
 public class WechatBaseMessage implements Serializable {
 
+    /**
+     * 消息类型
+     */
     @JSONField(name = "msgtype")
     protected String msgType;
 
+    /**
+     * 消息发送对象
+     */
     @JSONField(serialize = false)
     protected Target target;
 

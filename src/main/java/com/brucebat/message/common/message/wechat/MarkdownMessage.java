@@ -19,7 +19,7 @@ import java.util.Objects;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class MarkdownMessage extends WechatBaseMessage{
+public class MarkdownMessage extends WechatBaseMessage {
 
     /**
      * 消息内容, 需保证为utf-8
