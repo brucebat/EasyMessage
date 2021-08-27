@@ -24,7 +24,7 @@ public class TemplateCardMessage extends WechatBaseMessage implements Serializab
     @JSONField(name = "template_card")
     private TemplateCard templateCard;
 
-    public TemplateCardMessage () {
+    public TemplateCardMessage() {
         this.msgType = "template_card";
     }
 
