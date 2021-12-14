@@ -31,35 +31,37 @@ public class LinkMessage extends DingTalkBaseMessage {
         return linkMessage;
     }
 
-}
+    @Data
+    public static class Link {
+        /**
+         * 标题
+         */
+        private String title;
+        /**
+         * 消息内容
+         */
+        private String text;
+        /**
+         * 封面url地址
+         */
+        private String picUrl;
+        /**
+         * 跳转消息内容
+         */
+        private String messageUrl;
 
-@Data
-class Link {
-    /**
-     * 标题
-     */
-    private String title;
-    /**
-     * 消息内容
-     */
-    private String text;
-    /**
-     * 封面url地址
-     */
-    private String picUrl;
-    /**
-     * 跳转消息内容
-     */
-    private String messageUrl;
+        public Link() {
 
-    public Link() {
+        }
 
+        public Link(String title, String text, String picUrl, String messageUrl) {
+            this.title = title;
+            this.text = text;
+            this.picUrl = picUrl;
+            this.messageUrl = messageUrl;
+        }
     }
 
-    public Link(String title, String text, String picUrl, String messageUrl) {
-        this.title = title;
-        this.text = text;
-        this.picUrl = picUrl;
-        this.messageUrl = messageUrl;
-    }
 }
+
+
