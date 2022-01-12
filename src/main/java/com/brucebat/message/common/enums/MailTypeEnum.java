@@ -1,7 +1,6 @@
 package com.brucebat.message.common.enums;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * @author Sun Tianyu
@@ -21,18 +20,11 @@ public enum MailTypeEnum {
     /**
      * 类型
      */
-    private String type;
+    private final String type;
     /**
      * 描述
      */
-    private String desc;
-
-    private static List<MailTypeEnum> types = new ArrayList<>();
-
-    static {
-        types.add(HTML);
-        types.add(TEXT);
-    }
+    private final String desc;
 
     MailTypeEnum(String type, String desc) {
         this.type = type;
@@ -54,6 +46,6 @@ public enum MailTypeEnum {
      * @return 邮件类型枚举类
      */
     public static MailTypeEnum find(String type) {
-        return types.stream().filter(p -> p.getType().equals(type)).findFirst().orElse(null);
+        return Arrays.stream(MailTypeEnum.values()).filter(p -> p.getType().equals(type)).findFirst().orElse(null);
     }
 }
