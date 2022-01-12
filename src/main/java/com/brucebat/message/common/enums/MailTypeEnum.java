@@ -3,6 +3,8 @@ package com.brucebat.message.common.enums;
 import java.util.Arrays;
 
 /**
+ * 邮件类型枚举类
+ *
  * @author Sun Tianyu
  * @version 1.0
  * @since Created in 2021/2/4
