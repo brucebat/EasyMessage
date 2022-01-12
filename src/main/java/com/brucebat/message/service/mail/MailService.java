@@ -296,6 +296,7 @@ public class MailService {
         textPart.setText(content);
         contentPart.addBodyPart(textPart);
         contentPart.setSubType(MIXED);
+        message.setContent(contentPart);
     }
 
 
