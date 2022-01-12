@@ -44,16 +44,18 @@ public class TextMessage extends DingTalkBaseMessage {
     }
 
 
-}
+    @Data
+    public static class Text {
+        /**
+         * 内容
+         */
+        String content;
 
-@Data
-class Text {
-    /**
-     * 内容
-     */
-    String content;
-
-    public Text(String content) {
-        this.content = content;
+        public Text(String content) {
+            this.content = content;
+        }
     }
+
+
 }
+

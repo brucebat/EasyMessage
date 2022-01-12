@@ -2,6 +2,7 @@ package com.brucebat.message.common.message.mail;
 
 import lombok.Data;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
@@ -40,5 +41,13 @@ public class MailMessage implements Serializable {
      * 密送人地址，选填
      */
     private List<String> bccAddress;
+    /**
+     * 文件附件
+     */
+    private List<File> fileAttach;
+    /**
+     * url附件
+     */
+    private List<String> urlAttach;
 
 }

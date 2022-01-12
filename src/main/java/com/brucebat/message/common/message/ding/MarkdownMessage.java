@@ -45,22 +45,22 @@ public class MarkdownMessage extends DingTalkBaseMessage {
         markdownMessage.setMarkdown(markdown);
         return markdownMessage;
     }
-}
 
-@Data
-class Markdown {
+    @Data
+    public  static class Markdown {
+        /**
+         * 标题
+         */
+        private String title;
+        /**
+         * 内容
+         */
+        private String text;
 
-    /**
-     * 标题
-     */
-    private String title;
-    /**
-     * 内容
-     */
-    private String text;
-
-    public Markdown(String title, String text) {
-        this.title = title;
-        this.text = text;
+        public Markdown(String title, String text) {
+            this.title = title;
+            this.text = text;
+        }
     }
 }
+

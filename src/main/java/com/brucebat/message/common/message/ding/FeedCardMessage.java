@@ -58,33 +58,37 @@ public class FeedCardMessage extends DingTalkBaseMessage {
         return this;
     }
 
-}
-
-@Data
-class FeedCard {
-    private List<FeedCardLink> links;
-}
-
-@Data
-class FeedCardLink {
-    /**
-     * 标题
-     */
-    private String title;
-    /**
-     * 消息地址
-     */
-    @JSONField(name = "messageURL")
-    private String messageUrl;
-    /**
-     * 封面地址
-     */
-    @JSONField(name = "picURL")
-    private String picUrl;
-
-    public FeedCardLink(String title, String messageUrl, String picUrl) {
-        this.title = title;
-        this.messageUrl = messageUrl;
-        this.picUrl = picUrl;
+    @Data
+    public static class FeedCard {
+        private List<FeedCardLink> links;
     }
+
+    @Data
+    public static class FeedCardLink {
+        /**
+         * 标题
+         */
+        private String title;
+        /**
+         * 消息地址
+         */
+        @JSONField(name = "messageURL")
+        private String messageUrl;
+        /**
+         * 封面地址
+         */
+        @JSONField(name = "picURL")
+        private String picUrl;
+
+        public FeedCardLink(String title, String messageUrl, String picUrl) {
+            this.title = title;
+            this.messageUrl = messageUrl;
+            this.picUrl = picUrl;
+        }
+    }
+
 }
+
+
+
+

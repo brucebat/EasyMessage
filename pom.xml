@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.brucebat</groupId>
     <artifactId>spring-boot-starter-message</artifactId>
-    <version>1.4.2-RELEASE</version>
+    <version>1.4.3-RELEASE</version>
     <name>spring-boot-starter-message</name>
     <description>easy for messaging</description>
 

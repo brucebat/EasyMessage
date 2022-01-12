@@ -6,9 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * Markdown工具类
  *
- * @version 1.0
  * @author : Sun Tianyu
- * @since  Created in 2020/7/21
+ * @version 1.0
+ * @since Created in 2020/7/21
  */
 public class MarkdownUtils {
 
@@ -49,7 +49,7 @@ public class MarkdownUtils {
      * @param quote 获取引用
      * @return 处理完成结果
      */
-    public static String getQuote(String quote){
+    public static String getQuote(String quote) {
         return "> " + quote + " \n";
     }
 
@@ -77,7 +77,7 @@ public class MarkdownUtils {
      * 生成网页链接格式
      *
      * @param title 网页标题
-     * @param link 网页链接
+     * @param link  网页链接
      * @return 处理完成格式
      */
     public static String getLink(String title, String link) {
@@ -87,7 +87,7 @@ public class MarkdownUtils {
     /**
      * 生成图片链接格式
      *
-     * @param title 标题
+     * @param title     标题
      * @param imageLink 图片链接
      * @return 处理完成格式
      */
@@ -103,15 +103,35 @@ public class MarkdownUtils {
      * @return 处理完成格式
      */
     public static String getUnsortedList(String... texts) {
-        if (null == texts){
+        if (null == texts) {
             return null;
         }
         StringBuilder result = new StringBuilder();
-        for (String text : texts){
+        for (String text : texts) {
             if (StringUtils.isBlank(text)) {
                 continue;
             }
             result.append("- ").append(text).append(" \n");
+        }
+        return result.toString();
+    }
+
+    /**
+     * 获取有序列表
+     *
+     * @param texts 待处理文本
+     * @return Markdown格式的有序列表文本
+     */
+    public static String getOrderedList(String... texts) {
+        if (null == texts) {
+            return null;
+        }
+        StringBuilder result = new StringBuilder();
+        for (int i = 1; i <= texts.length; i++) {
+            if (StringUtils.isBlank(texts[i - 1])) {
+                continue;
+            }
+            result.append(i).append(". ").append(texts[i - 1]).append(" \n");
         }
         return result.toString();
     }

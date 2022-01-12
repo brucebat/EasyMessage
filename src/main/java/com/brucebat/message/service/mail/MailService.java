@@ -10,11 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeUtility;
+import javax.mail.internet.*;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 /**
@@ -31,6 +34,15 @@ public class MailService {
      * 邮件配置信息
      */
     private final MailProperties mailProperties;
+
+    /**
+     * 关联关系
+     */
+    private static final String RELATED = "related";
+    /**
+     * 混合关系
+     */
+    private static final String MIXED = "mixed";
 
     public MailService(MailProperties mailProperties) {
         this.mailProperties = mailProperties;
@@ -64,8 +76,9 @@ public class MailService {
         try {
             Session session = this.initSession(from, password);
             Message message = this.buildMessage(mailMessage, session, from);
+            MimeMultipart multipart = this.handleAttachments(mailMessage);
             // 进行实际邮件发送
-            this.doSend(message, mailMessage.getMailType(), mailMessage.getContent());
+            this.doSend(message, mailMessage.getMailType(), mailMessage.getContent(), multipart);
             return true;
         } catch (Exception e) {
             log.error("send mail error, exception is: ", e);
@@ -157,31 +170,133 @@ public class MailService {
     }
 
     /**
+     * 进行附件内容处理
+     *
+     * @param mailMessage 待处理邮件内容
+     * @return 邮件中的多个组成部分
+     * @throws MalformedURLException        url格式异常
+     * @throws MessagingException           消息发送异常
+     * @throws UnsupportedEncodingException 不支持的编码异常
+     */
+    private MimeMultipart handleAttachments(MailMessage mailMessage) throws MalformedURLException, MessagingException, UnsupportedEncodingException {
+        MimeMultipart multipart = null;
+        if (CollectionUtils.isNotEmpty(mailMessage.getFileAttach())) {
+            multipart = new MimeMultipart();
+            this.handleFileAttach(mailMessage.getFileAttach(), multipart);
+        }
+        if (CollectionUtils.isNotEmpty(mailMessage.getUrlAttach())) {
+            if (Objects.isNull(multipart)) {
+                multipart = new MimeMultipart();
+            }
+            this.handleUrlAttach(mailMessage.getUrlAttach(), multipart);
+        }
+        return multipart;
+    }
+
+    /**
+     * 进行邮件附件信息处理
+     *
+     * @param files     待处理邮件附件
+     * @param multipart 待处理邮件多个组成部分
+     * @throws MessagingException           消息发送异常
+     * @throws UnsupportedEncodingException 不支持的编码异常
+     */
+    private void handleFileAttach(List<File> files, MimeMultipart multipart) throws MessagingException, UnsupportedEncodingException {
+        for (File file : files) {
+            MimeBodyPart attachment = new MimeBodyPart();
+            DataHandler dataHandler = new DataHandler(new FileDataSource(file));
+            attachment.setDataHandler(dataHandler);
+            attachment.setFileName(MimeUtility.encodeText(dataHandler.getName()));
+            multipart.addBodyPart(attachment);
+        }
+
+    }
+
+    /**
+     * 进行url附件处理
+     *
+     * @param urlAttach 待处理url附件
+     * @param multipart 待处理邮件多个组成部分
+     * @throws MalformedURLException        url格式异常
+     * @throws MessagingException           消息发送异常
+     * @throws UnsupportedEncodingException 不支持的编码异常
+     */
+    private void handleUrlAttach(List<String> urlAttach, MimeMultipart multipart) throws MalformedURLException, MessagingException, UnsupportedEncodingException {
+        for (String url : urlAttach) {
+            MimeBodyPart attachment = new MimeBodyPart();
+            DataHandler dataHandler = new DataHandler(new URL(url));
+            attachment.setDataHandler(dataHandler);
+            attachment.setFileName(MimeUtility.encodeText(dataHandler.getName()));
+            multipart.addBodyPart(attachment);
+        }
+    }
+
+    /**
      * 根据邮件类型进行发送处理
      *
-     * @param message  待发送邮件
-     * @param mailType 邮件类型
-     * @param content  邮件内容
+     * @param message     待发送邮件
+     * @param mailType    邮件类型
+     * @param content     邮件内容
+     * @param contentPart 邮件内容组成部分
      * @throws MessageException   消息发送异常
      * @throws MessagingException 邮件发送异常
      */
-    private void doSend(Message message, String mailType, String content) throws MessagingException {
+    private void doSend(Message message, String mailType, String content, MimeMultipart contentPart) throws MessagingException {
         MailTypeEnum mailTypeEnum = MailTypeEnum.find(mailType);
         if (Objects.isNull(mailTypeEnum)) {
             throw new MessageException("sw-0001", "请求参数异常 : 非法邮件类型");
         }
         switch (mailTypeEnum) {
             case HTML:
-                message.setContent(content, "text/html;charset=UTF-8");
+                this.buildHtmlContent(message, content, contentPart);
                 break;
             case TEXT:
-                message.setText(content);
+                this.buildTextContent(message, content, contentPart);
                 break;
             default:
                 break;
         }
-        Transport.send(message);
+        Transport.send(message, message.getAllRecipients());
         message.saveChanges();
+    }
+
+    /**
+     * 进行HTML类型邮件内容组装
+     *
+     * @param message     待组装消息
+     * @param content     待组装内容
+     * @param contentPart 待组装邮件组成部分
+     * @throws MessagingException 发送异常
+     */
+    private void buildHtmlContent(Message message, String content, MimeMultipart contentPart) throws MessagingException {
+        if (Objects.isNull(contentPart)) {
+            message.setContent(content, "text/html;charset=UTF-8");
+            return;
+        }
+        MimeBodyPart textPart = new MimeBodyPart();
+        textPart.setContent(content, "text/html;charset=UTF-8");
+        contentPart.addBodyPart(textPart);
+        contentPart.setSubType(MIXED);
+    }
+
+    /**
+     * 进行简单文本类型邮件内容组装
+     *
+     * @param message     待组装消息
+     * @param content     待组装内容
+     * @param contentPart 待组装邮件组成部分
+     * @throws MessagingException 消息发送异常
+     */
+    private void buildTextContent(Message message, String content, MimeMultipart contentPart) throws MessagingException {
+        if (Objects.isNull(contentPart)) {
+            message.setText(content);
+            return;
+        }
+        MimeBodyPart textPart = new MimeBodyPart();
+        textPart.setText(content);
+        contentPart.addBodyPart(textPart);
+        contentPart.setSubType(MIXED);
+        message.setContent(contentPart);
     }
 
 
