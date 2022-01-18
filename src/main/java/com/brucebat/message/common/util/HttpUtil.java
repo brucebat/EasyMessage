@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
+import java.io.File;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +19,11 @@ import java.util.concurrent.TimeUnit;
 public class HttpUtil {
 
     private static final OkHttpClient OK_HTTP_CLIENT;
+
+    /**
+     * 文件
+     */
+    private static final String FILE = "file";
 
     static {
         //第三方的日志拦截器
@@ -51,6 +57,27 @@ public class HttpUtil {
      */
     public static String post(String url, String requestParams) {
         return doPost(url, requestParams);
+    }
+
+    /**
+     * 通过post请求进行文件上传
+     *
+     * @param url      带调用url地址
+     * @param file     待处理文件
+     * @param fileName 文件名称
+     * @return 返回结果
+     */
+    public static String uploadByPost(String url, File file, String fileName) {
+        try {
+            RequestBody requestBody = new MultipartBody.Builder().
+                    setType(MultipartBody.FORM).
+                    addFormDataPart(FILE, fileName, RequestBody.create(MediaType.parse("multipart/form-data"), file)).build();
+            Request request = new Request.Builder().url(url).post(requestBody).build();
+            return doExecuteRequest(request);
+        } catch (Exception e) {
+            log.error("okhttp-upload-by-post-error, exception : ", e);
+        }
+        return null;
     }
 
     /**
