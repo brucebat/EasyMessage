@@ -29,6 +29,14 @@ public class MarkdownMessage extends DingTalkBaseMessage {
         this.msgType = MessageTypeEnum.MARKDOWN.getType();
     }
 
+    /**
+     * 进行markdown消息内容创建
+     *
+     * @param title  标题
+     * @param text   文本内容
+     * @param target 指定的消息接收对象
+     * @return 创建完成的markdown消息内容
+     */
     public static MarkdownMessage build(String title, String text, Target target) {
         if (Objects.nonNull(target) && CollectionUtils.isNotEmpty(target.getAtMobiles())) {
             StringBuilder atText = new StringBuilder("\n\n");
@@ -47,7 +55,7 @@ public class MarkdownMessage extends DingTalkBaseMessage {
     }
 
     @Data
-    public  static class Markdown {
+    public static class Markdown {
         /**
          * 标题
          */
