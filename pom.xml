@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.brucebat</groupId>
     <artifactId>spring-boot-starter-message</artifactId>
-    <version>1.4.3-RELEASE</version>
+    <version>1.4.4-RELEASE</version>
     <name>spring-boot-starter-message</name>
     <description>easy for messaging</description>
 
@@ -55,7 +55,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.74</version>
+            <version>1.2.83</version>
         </dependency>
 
         <dependency>
