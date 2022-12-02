@@ -16,6 +16,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -105,6 +107,23 @@ public class DingRobotService {
         JSONObject data = JSON.parseObject(response);
         int code = data.getInteger(ERROR_CODE);
         return code == 0;
+    }
+
+    /**
+     * 发送群组机器人消息
+     *
+     * @param accessToken          凭证令牌
+     * @param targetConversationId 目标群组消息id
+     * @param msgTemplateId        消息模板id
+     * @param messageParams        消息参数
+     * @param receivePhones        接收消息电话
+     * @param robotCode            机器人code
+     * @return 是否发送成功
+     */
+    public boolean sendGroupRobot(String accessToken, String targetConversationId, String msgTemplateId, Map<String, String> messageParams,
+                                  List<String> receivePhones, String robotCode) {
+        // 进行消息组机器人消息发送
+        return false;
     }
 
     /**
