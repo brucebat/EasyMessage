@@ -27,7 +27,12 @@ public enum DingApiEnum {
     /**
      * 根据群模板创建群
      */
-    CREATE_CONVERSATION("根据群模板创建群", "https://oapi.dingtalk.com/topapi/im/chat/scenegroup/create?access_token=%s");
+    CREATE_CONVERSATION("根据群模板创建群", "https://oapi.dingtalk.com/topapi/im/chat/scenegroup/create?access_token=%s"),
+
+    /**
+     * 进行群组机器人消息发送
+     */
+    CONVERSATION_GROUP_ROBOT_SEND("群组机器人消息发送", "https://oapi.dingtalk.com/topapi/im/chat/scencegroup/message/send_v2");
 
     /**
      * api描述
