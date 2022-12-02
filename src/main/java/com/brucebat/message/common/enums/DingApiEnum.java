@@ -23,7 +23,11 @@ public enum DingApiEnum {
     /**
      * 发送模板通知消息
      */
-    SEND_TEMPLATE_WORK_NOTICE("发送模板通知消息", "https://oapi.dingtalk.com/topapi/message/corpconversation/sendbytemplate?access_token=%s");
+    SEND_TEMPLATE_WORK_NOTICE("发送模板通知消息", "https://oapi.dingtalk.com/topapi/message/corpconversation/sendbytemplate?access_token=%s"),
+    /**
+     * 根据群模板创建群
+     */
+    CREATE_CONVERSATION("根据群模板创建群", "https://oapi.dingtalk.com/topapi/im/chat/scenegroup/create?access_token=%s");
 
     /**
      * api描述

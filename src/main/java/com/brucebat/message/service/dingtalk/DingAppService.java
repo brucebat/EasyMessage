@@ -6,8 +6,12 @@ import com.brucebat.message.common.config.DingAppProperties;
 import com.brucebat.message.common.enums.DingApiEnum;
 import com.brucebat.message.common.enums.DingResponseEnum;
 import com.brucebat.message.common.exception.MessageException;
+import com.brucebat.message.common.message.ding.ConversationCreateResponse;
 import com.brucebat.message.common.util.HttpUtil;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
 
 /**
  * 钉钉应用服务类
@@ -81,5 +85,31 @@ public class DingAppService {
             throw new MessageException("sw-0010", "根据手机获取用户id异常: " + result.getString(DingResponseEnum.ERROR_MSG.getFiled()));
         }
         return result.getJSONObject(DingResponseEnum.RESULT.getFiled()).getString("userid");
+    }
+
+    /**
+     * 创建群
+     *
+     * @param accessToken 调用凭证
+     * @param ownerUserId  群主用户id
+     * @param title 群标题
+     * @param templateId 模板id
+     * @param userIds 群成员用户id
+     * @return 创完成群信息
+     */
+    public ConversationCreateResponse createConversation(String accessToken, String ownerUserId, String title, String templateId, List<String> userIds) {
+        if (StringUtils.isBlank(accessToken) || StringUtils.isBlank(ownerUserId) || StringUtils.isBlank(templateId) || StringUtils.isBlank(title)) {
+            throw new MessageException("sw-0001", "请求参数不能为空 : accessToken或ownerUserId或templateId或title为空");
+        }
+        String url = String.format(DingApiEnum.CREATE_CONVERSATION.getApiPath(), accessToken);
+        JSONObject request = new JSONObject().fluentPut("owner_user_id", ownerUserId).fluentPut("template_id", templateId).fluentPut("title", title);
+        if (CollectionUtils.isNotEmpty(userIds)) {
+            request.put("user_ids", String.join(",", userIds));
+        }
+        String response = HttpUtil.post(url, request);
+        if (StringUtils.isBlank(response)) {
+            throw new MessageException("sw-0010", "调用创建群接口发生异常，返回结果为空");
+        }
+        return JSON.parseObject(response, ConversationCreateResponse.class);
     }
 }
