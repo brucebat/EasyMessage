@@ -32,7 +32,7 @@ public enum DingApiEnum {
     /**
      * 进行群组机器人消息发送
      */
-    CONVERSATION_GROUP_ROBOT_SEND("群组机器人消息发送", "https://oapi.dingtalk.com/topapi/im/chat/scencegroup/message/send_v2");
+    CONVERSATION_GROUP_ROBOT_SEND("群组机器人消息发送", "https://oapi.dingtalk.com/topapi/im/chat/scencegroup/message/send_v2?access_token=%s");
 
     /**
      * api描述
