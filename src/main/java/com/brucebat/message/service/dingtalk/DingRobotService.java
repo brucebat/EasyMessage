@@ -4,9 +4,13 @@ package com.brucebat.message.service.dingtalk;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.brucebat.message.common.config.DingRobotProperties;
+import com.brucebat.message.common.enums.DingApiEnum;
 import com.brucebat.message.common.exception.MessageException;
 import com.brucebat.message.common.message.ding.DingTalkBaseMessage;
+import com.brucebat.message.common.message.ding.GroupBotResponse;
 import com.brucebat.message.common.util.HttpUtil;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,10 +124,30 @@ public class DingRobotService {
      * @param robotCode            机器人code
      * @return 是否发送成功
      */
-    public boolean sendGroupRobot(String accessToken, String targetConversationId, String msgTemplateId, Map<String, String> messageParams,
-                                  List<String> receivePhones, String robotCode) {
-        // 进行消息组机器人消息发送
-        return false;
+    public GroupBotResponse sendGroupRobot(String accessToken, String targetConversationId, String msgTemplateId, Map<String, String> messageParams,
+                                           List<String> receivePhones, String robotCode) {
+        if (StringUtils.isBlank(accessToken)) {
+            throw new MessageException("sw-0001", "accessToken不能为空");
+        }
+        if (StringUtils.isBlank(targetConversationId) || StringUtils.isBlank(msgTemplateId) || StringUtils.isBlank(robotCode)) {
+            throw new MessageException("sw-0001", "消息发送的必要参数缺失");
+        }
+        String url = String.format(DingApiEnum.CONVERSATION_GROUP_ROBOT_SEND.getApiPath(), accessToken);
+        JSONObject request = new JSONObject();
+        request.put("target_open_conversation_id", targetConversationId);
+        request.put("msg_template_id", msgTemplateId);
+        if (MapUtils.isNotEmpty(messageParams)) {
+            request.put("msg_param_map", messageParams);
+        }
+        if (CollectionUtils.isNotEmpty(receivePhones)) {
+            request.put("receiver_mobiles", String.join(",", receivePhones));
+        }
+        if (CollectionUtils.isNotEmpty(receivePhones)) {
+            request.put("at_mobiles", String.join(",", receivePhones));
+        }
+        request.put("robot_code", robotCode);
+        String response = HttpUtil.post(url, request);
+        return JSON.parseObject(response, GroupBotResponse.class);
     }
 
     /**
